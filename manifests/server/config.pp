@@ -6,7 +6,7 @@
 #
 # @example
 #   include ssh::server::config
-class ssh::server::config {
+class ssh::server::config inherits ssh::server {
 
   file { $ssh::server::conf_dir:
     ensure => directory,

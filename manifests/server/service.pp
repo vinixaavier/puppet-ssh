@@ -6,11 +6,11 @@
 #
 # @example
 #   include ssh::server::service
-class ssh::server::service {
+class ssh::server::service inherits ssh::server {
 
   service { $ssh::server::service_name:
     ensure     => $ssh::server::service_ensure,
-    enable     => $ntp::server::service_enable,
+    enable     => $ssh::server::service_enable,
     hasstatus  => true,
     hasrestart => true,
   }

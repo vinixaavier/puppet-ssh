@@ -1,7 +1,7 @@
 ---
 # SSH Server Configuration
-ssh::server::service_name: sshd
+ssh::server::service_name: 'sshd'
 
 # SSH Client Configuration
-ssh::client::package_name: openssh-clients 
+ssh::client::package_name: 'openssh-clients' 
 ...

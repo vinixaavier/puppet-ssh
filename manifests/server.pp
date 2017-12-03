@@ -8,15 +8,17 @@
 #   include ssh::server
 class ssh::server (
 
-  String $package_name,
-  String $package_ensure,
-  String $conf_dir,
-  String $conf_owner,
-  String $conf_group,
-  String $conf_dir_mode,
-  String $conf_file_mode,
-  String $service_name,
-  String $service_ensure,
+  String                   $package_name,
+  String                   $package_ensure,
+  Stdlib::Absolutepath     $conf_dir,
+  Stdlib::Absolutepath     $conf_file,
+  Variant[String, Integer] $conf_owner,
+  Variant[String, Integer] $conf_group,
+  String                   $conf_dir_mode,
+  String                   $conf_file_mode,
+  String                   $service_name,
+  String                   $service_ensure,
+  Boolean                  $service_enable,
 
 ) {
 
