@@ -7,4 +7,12 @@
 # @example
 #   include ssh::server::service
 class ssh::server::service {
+
+  service { $ssh::server::service_name:
+    ensure     => $ssh::server::service_ensure,
+    enable     => $ntp::server::service_enable,
+    hasstatus  => true,
+    hasrestart => true,
+  }
+
 }

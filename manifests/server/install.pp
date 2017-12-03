@@ -7,4 +7,9 @@
 # @example
 #   include ssh::server::install
 class ssh::server::install {
+
+  package { $ssh::server::package_name:
+    ensure => $ssh::server::package_ensure
+  }
+
 }

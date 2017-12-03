@@ -7,4 +7,19 @@
 # @example
 #   include ssh::server::config
 class ssh::server::config {
+
+  file { $ssh::server::conf_dir:
+    ensure => directory,
+    owner  => $ssh::server::conf_owner,
+    group  => $ssh::server::conf_group,
+    mode   => $ssh::server::conf_dir_mode,
+  }
+
+  file { $ssh::server::conf_file:
+    ensure => present,
+    owner  => $ssh::server::conf_owner,
+    group  => $ssh::server::conf_group,
+    mode   => $ssh::server::conf_file_mode,
+  }
+
 }
