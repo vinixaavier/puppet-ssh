@@ -1,74 +1,122 @@
-#       $OpenBSD: sshd_config,v 1.100 2016/08/15 12:32:04 naddy Exp $
+# sshd_config: Managed by Puppet.
 
-# This is the sshd server system-wide configuration file.  See
-# sshd_config(5) for more information.
 
-# This sshd was compiled with PATH=/usr/local/bin:/usr/bin
-
-# The strategy used for options in the default sshd_config shipped with
-# OpenSSH is to specify options with their default value where
-# possible, but leave them commented.  Uncommented options override the
-# default value.
-
-# If you want to change the port on a SELinux system, you have to tell
-# SELinux about this change.
-# semanage port -a -t ssh_port_t -p tcp #PORTNUMBER
-#
 #Port 22
 #AddressFamily any
 #ListenAddress 0.0.0.0
 #ListenAddress ::
 
-HostKey /etc/ssh/ssh_host_rsa_key
+<% $ssh::server::hostkeys.each |$hostkey| { -%>
+<%= $hostkey %>
+<% } -%>
+
+#HostKey /etc/ssh/ssh_host_rsa_key
 #HostKey /etc/ssh/ssh_host_dsa_key
-HostKey /etc/ssh/ssh_host_ecdsa_key
-HostKey /etc/ssh/ssh_host_ed25519_key
+#HostKey /etc/ssh/ssh_host_ecdsa_key
+#HostKey /etc/ssh/ssh_host_ed25519_key
+
 
 # Ciphers and keying
+<%- if $ssh::server::rekeylimit { -%>
+RekeyLimit <%= $ssh::server::rekeylimit %>
+<% } -%>
 #RekeyLimit default none
 
 # Logging
+<%- if $ssh::server::syslogfacility { -%>
+SyslogFacility <%= $ssh::server::syslogfacility %>
+<% } -%>
+<%- if $ssh::server::loglevel { -%>
+LogLevel <%= $ssh::server::loglevel %>
+<% } -%>
 #SyslogFacility AUTH
-SyslogFacility AUTHPRIV
+#SyslogFacility AUTHPRIV
 #LogLevel INFO
 
 # Authentication:
-
+<%- if $ssh::server::logingracetime { -%>
+LoginGraceTime <%= $ssh::server::logingracetime %>
+<% } -%>
+<%- if $ssh::server::permitrootlogin { -%>
+PermitRootLogin <%= $ssh::server::permitrootlogin %>
+<% } -%>
+<%- if $ssh::server::strictmodes { -%>
+StrictModes <%= $ssh::server::strictmodes %>
+<% } -%>
+<%- if $ssh::server::maxauthtries { -%>
+MaxAuthTries <%= $ssh::server::maxauthtries %>
+<% } -%>
+<%- if $ssh::server::maxsessions { -%>
+MaxSessions <%= $ssh::server::maxsessions %>
+<% } -%>
+<%- if $ssh::server::pubkeyauth { -%>
+PubkeyAuthentication <%= $ssh::server::pubkeyauth %>
+<% } -%>
+<%- if $ssh::server::authkeysfile { -%>
+AuthorizedKeysFile <%= $ssh::server::authkeysfile %>
+<% } -%>
+<%- if $ssh::server::authprincipalsfile { -%>
+AuthorizedPrincipalsFile <%= $ssh::server::authprincipalsfile %>
+<% } -%>
+<%- if $ssh::server::authkeyscommand { -%>
+AuthorizedKeysCommand <%= $ssh::server::authkeyscommand %>
+<% } -%>
+<%- if $ssh::server::authkeyscommanduser { -%>
+AuthorizedKeysCommandUser <%= $ssh::server::authkeyscommanduser %>
+<% } -%>
 #LoginGraceTime 2m
 #PermitRootLogin yes
 #StrictModes yes
 #MaxAuthTries 6
 #MaxSessions 10
-
 #PubkeyAuthentication yes
-
-# The default is to check both .ssh/authorized_keys and .ssh/authorized_keys2
-# but this is overridden so installations will only check .ssh/authorized_keys
-AuthorizedKeysFile      .ssh/authorized_keys
-
+#AuthorizedKeysFile      .ssh/authorized_keys
 #AuthorizedPrincipalsFile none
-
 #AuthorizedKeysCommand none
 #AuthorizedKeysCommandUser nobody
 
-# For this to work you will also need host keys in /etc/ssh/ssh_known_hosts
+<%- if $ssh::server::hostbasedauth { -%>
+HostbasedAuthentication <%= $ssh::server::hostbasedauth %>
+<% } -%>
+<%- if $ssh::server::ignoreuserknownhosts { -%>
+IgnoreUserKnownHosts <%= $ssh::server::ignoreuserknownhosts %>
+<% } -%>
+<%- if $ssh::server::ignorerhosts { -%>
+IgnoreRhosts <%= $ssh::server::ignorerhosts %>
+<% } -%>
 #HostbasedAuthentication no
-# Change to yes if you don't trust ~/.ssh/known_hosts for
-# HostbasedAuthentication
 #IgnoreUserKnownHosts no
-# Don't read the user's ~/.rhosts and ~/.shosts files
 #IgnoreRhosts yes
 
-# To disable tunneled clear text passwords, change to no here!
+<%- if $ssh::server::passwordauth { -%>
+PasswordAuthentication <%= $ssh::server::passwordauth %>
+<% } -%>
+<%- if $ssh::server::permitemptypassword { -%>
+PermitEmptyPasswords <%= $ssh::server::permitemptypassword %>
+<% } -%>
+<%- if $ssh::server::challengeresponseauth { -%>
+ChallengeResponseAuthentication <%= $ssh::server::challengeresponseauth %>
+<% } -%>
 #PasswordAuthentication yes
 #PermitEmptyPasswords no
-PasswordAuthentication no
-
-# Change to no to disable s/key passwords
 #ChallengeResponseAuthentication yes
-ChallengeResponseAuthentication no
 
 # Kerberos options
+<%- if $ssh::server::krbsauth { -%>
+KerberosAuthentication <%= $ssh::server::krbsauth %>
+<% } -%>
+<%- if $ssh::server::krbsorlocalpasswd { -%>
+KerberosOrLocalPasswd <%= $ssh::server::krbsorlocalpasswd %>
+<% } -%>
+<%- if $ssh::server::krbsticketcleanup { -%>
+KerberosTicketCleanup <%= $ssh::server::krbsticketcleanup %>
+<% } -%>
+<%- if $ssh::server::krbsgetafstoken { -%>
+KerberosGetAFSToken <%= $ssh::server::krbsgetafstoken %>
+<% } -%>
+<%- if $ssh::server::krbsusekuserok { -%>
+KerberosUseKuserok <%= $ssh::server::krbsusekuserok %>
+<% } -%>
 #KerberosAuthentication no
 #KerberosOrLocalPasswd yes
 #KerberosTicketCleanup yes
@@ -76,24 +124,32 @@ ChallengeResponseAuthentication no
 #KerberosUseKuserok yes
 
 # GSSAPI options
-GSSAPIAuthentication yes
-GSSAPICleanupCredentials no
+<%- if $ssh::server::gssapiauth { -%>
+GSSAPIAuthentication <%= $ssh::server::gssapiauth %>
+<% } -%>
+<%- if $ssh::server::gssapicleanupcredentials { -%>
+GSSAPICleanupCredentials <%= $ssh::server::gssapicleanupcredentials %>
+<% } -%>
+<%- if $ssh::server::gssapistrictacceptorcheck { -%>
+GSSAPIStrictAcceptorCheck <%= $ssh::server::gssapistrictacceptorcheck %>
+<% } -%>
+<%- if $ssh::server::gssapikeyexchange { -%>
+GSSAPIKeyExchange <%= $ssh::server::gssapikeyexchange %>
+<% } -%>
+<%- if $ssh::server::gssapienablek5users { -%>
+GSSAPIEnablek5users <%= $ssh::server::gssapienablek5users %>
+<% } -%>
+#GSSAPIAuthentication yes
+#GSSAPICleanupCredentials no
 #GSSAPIStrictAcceptorCheck yes
 #GSSAPIKeyExchange no
 #GSSAPIEnablek5users no
 
-# Set this to 'yes' to enable PAM authentication, account processing,
-# and session processing. If this is enabled, PAM authentication will
-# be allowed through the ChallengeResponseAuthentication and
-# PasswordAuthentication.  Depending on your PAM configuration,
-# PAM authentication via ChallengeResponseAuthentication may bypass
-# the setting of "PermitRootLogin without-password".
-# If you just want the PAM account and session checks to run without
-# PAM authentication, then enable this but set PasswordAuthentication
-# and ChallengeResponseAuthentication to 'no'.
-# WARNING: 'UsePAM no' is not supported in Red Hat Enterprise Linux and may cause several
-# problems.
-UsePAM yes
+<%- if $ssh::server::usepam { -%>
+UsePAM <%= $ssh::server::usepam %>
+<% } -%>
+#UsePAM yes
+
 
 #AllowAgentForwarding yes
 #AllowTcpForwarding yes
