@@ -1,6 +1,14 @@
 # sshd_config: Managed by Puppet.
 
-
+<%- if $ssh::server::port { -%>
+Port <%= $ssh::server::port %>
+<% } -%>
+<%- if $ssh::server::addressfamily { -%>
+AddressFamily <%= $ssh::server::addressfamily %>
+<% } -%>
+<%- if $ssh::server::listenaddress { -%>
+RekeyLimit <%= $ssh::server::listenaddress %>
+<% } -%>
 #Port 22
 #AddressFamily any
 #ListenAddress 0.0.0.0
@@ -180,7 +188,7 @@ PrintLastLog <%= $ssh::server::printlastlog %>
 #AllowAgentForwarding yes
 #AllowTcpForwarding yes
 #GatewayPorts no
-X11Forwarding yes
+#X11Forwarding yes
 #X11DisplayOffset 10
 #X11UseLocalhost yes
 #PermitTTY yes
@@ -230,8 +238,8 @@ PidFile <%= $ssh::server::pidfile %>
 <%- if $ssh::server::maxstartups { -%>
 MaxStartups <%= $ssh::server::maxstartups %>
 <% } -%>
-<%- if $ssh::server::permittunnel { -%>
-PermitTunnel <%= $ssh::server::permittunnel %>
+<%- if $ssh::server::permit_tunnel { -%>
+PermitTunnel <%= $ssh::server::permit_tunnel %>
 <% } -%>
 <%- if $ssh::server::chrootdirectory { -%>
 ChrootDirectory <%= $ssh::server::chrootdirectory %>
@@ -263,6 +271,10 @@ Subsystem <%= $ssh::server::subsystem %>
 <% } -%>
 #Subsystem       sftp    /usr/libexec/openssh/sftp-server
 
+#<% $ssh::server::match.each |$key, $value| { -%>
+#Match User <%= $acceptenv %>
+#   <%= $key %> <%= $value %>
+#<% } -%>
 # Example of overriding settings on a per-user basis
 #Match User anoncvs
 #       X11Forwarding no
