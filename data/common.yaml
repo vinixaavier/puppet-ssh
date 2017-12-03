@@ -10,8 +10,78 @@ ssh::server::conf_owner: 0
 ssh::server::conf_group: 0
 ssh::server::service_ensure: running
 ssh::server::service_enable: true
+ssh::server::port: ~
+ssh::server::addressfamily: ~
+ssh::server::listenaddress: ~
+ssh::server::hostkeys:
+  - '/etc/ssh/ssh_host_rsa_key'
+  - '/etc/ssh/ssh_host_ecdsa_key'
+  - '/etc/ssh/ssh_host_ed25519_key'
+ssh::server::rekeylimit: ~
+ssh::server::syslogfacility: 'AUTHPRIV'
+ssh::server::log_level: ~
+ssh::server::logingracetime: ~
+ssh::server::permitrootlogin: ~
+ssh::server::strictmodes: ~
+ssh::server::maxauthtries: ~
+ssh::server::maxsessions: ~
+ssh::server::pubkeyauth: ~
+ssh::server::authkeysfile: '.ssh/authorized_keys'
+ssh::server::authprincipalsfile:  ~
+ssh::server::authkeyscommand: ~
+ssh::server::authkeyscommanduser: ~
+ssh::server::hostbasedauth: ~
+ssh::server::ignoreuserknownhosts: ~
+ssh::server::ignorerhosts: ~
+ssh::server::passwordauth: 'no'
+ssh::server::permitemptypassword: ~
+ssh::server::challengeresponseauth: 'no'
+ssh::server::krbsauth: ~
+ssh::server::krbsorlocalpasswd: ~
+ssh::server::krbsticketcleanup: ~
+ssh::server::krbsgetafstoken: ~
+ssh::server::krbsusekuserok: ~
+ssh::server::gssapiauth: 'yes'
+ssh::server::gssapicleanupcredentials: 'no'
+ssh::server::gssapistrictacceptorcheck: ~
+ssh::server::gssapikeyexchange: ~
+ssh::server::gssapienablek5users: ~
+ssh::server::usepam: 'yes'
+ssh::server::allowagentforwarding: ~
+ssh::server::allowtcpforwarding: ~
+ssh::server::gatewayports: ~
+ssh::server::x11forwarding: 'yes'
+ssh::server::x11displayoffset: ~
+ssh::server::x11uselocalhost: ~
+ssh::server::permit_tty: ~
+ssh::server::printmotd: ~
+ssh::server::printlastlog: ~
+ssh::server::tcpkeepalive: ~
+ssh::server::uselogin: ~
+ssh::server::useprivilegeseparation: ~
+ssh::server::keyregenerationinterval: ~
+ssh::server::serverkeybits: ~
+ssh::server::permituserenvironment: ~
+ssh::server::compression: ~
+ssh::server::clientaliveinterval: ~
+ssh::server::clientalivecountmax: ~
+ssh::server::showpatchlevel: ~
+ssh::server::usedns: 'no'
+ssh::server::pidfile: ~
+ssh::server::maxstartups: ~
+ssh::server::permit_tunnel: ~
+ssh::server::chrootdirectory: ~
+ssh::server::versionaddendum: ~
+ssh::server::banner: ~
+ssh::server::acceptenvs:
+  - 'LANG LC_CTYPE LC_NUMERIC LC_TIME LC_COLLATE LC_MONETARY LC_MESSAGES'
+  - 'LC_PAPER LC_NAME LC_ADDRESS LC_TELEPHONE LC_MEASUREMENT'
+  - 'LC_IDENTIFICATION LC_ALL LANGUAGE'
+  - 'XMODIFIERS'
+ssh::server::subsystem: 'sftp /usr/libexec/openssh/sftp-server'
 
-# SSH Client Configuration
+
+# SSH Client Configuration:
 
 
 ...

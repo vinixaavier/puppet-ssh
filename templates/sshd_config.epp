@@ -34,8 +34,8 @@ RekeyLimit <%= $ssh::server::rekeylimit %>
 <%- if $ssh::server::syslogfacility { -%>
 SyslogFacility <%= $ssh::server::syslogfacility %>
 <% } -%>
-<%- if $ssh::server::loglevel { -%>
-LogLevel <%= $ssh::server::loglevel %>
+<%- if $ssh::server::log_level { -%>
+LogLevel <%= $ssh::server::log_level %>
 <% } -%>
 #SyslogFacility AUTH
 #SyslogFacility AUTHPRIV
@@ -205,6 +205,12 @@ UseLogin <%= $ssh::server::uselogin %>
 #UseLogin no
 <%- if $ssh::server::useprivilegeseparation { -%>
 UsePrivilegeSeparation <%= $ssh::server::useprivilegeseparation %>
+<% } -%>
+<%- if $ssh::server::keyregenerationinterval { -%>
+KeyRegenerationInterval <%= $ssh::server::keyregenerationinterval %>
+<% } -%>
+<%- if $ssh::server::serverkeybits { -%>
+ServerKeyBits <%= $ssh::server::serverkeybits %>
 <% } -%>
 <%- if $ssh::server::permituserenvironment { -%>
 PermitUserEnvironment <%= $ssh::server::permituserenvironment %>
