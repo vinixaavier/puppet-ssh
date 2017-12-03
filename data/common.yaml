@@ -1,0 +1,16 @@
+---
+# SSH Server Configuration
+ssh::server::package_name: openssh-server
+ssh::server::package_ensure: latest
+ssh::server::conf_dir: /etc/ssh
+ssh::server::conf_dir_mode: 0755
+ssh::server::conf_file: /etc/ssh/sshd_config
+ssh::server::conf_file_mode: 0644
+ssh::server::conf_owner: 0
+ssh::server::conf_group: 0
+ssh::server::service_ensure: running
+
+# SSH Client Configuration
+
+
+...
