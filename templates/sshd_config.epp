@@ -7,7 +7,7 @@
 #ListenAddress ::
 
 <% $ssh::server::hostkeys.each |$hostkey| { -%>
-<%= $hostkey %>
+HostKey <%= $hostkey %>
 <% } -%>
 
 #HostKey /etc/ssh/ssh_host_rsa_key
@@ -150,7 +150,33 @@ UsePAM <%= $ssh::server::usepam %>
 <% } -%>
 #UsePAM yes
 
-
+<%- if $ssh::server::allowagentforwarding { -%>
+AllowAgentForwarding <%= $ssh::server::allowagentforwarding %>
+<% } -%>
+<%- if $ssh::server::allowtcpforwarding { -%>
+AllowTcpForwarding <%= $ssh::server::allowtcpforwarding %>
+<% } -%>
+<%- if $ssh::server::gatewayports { -%>
+GatewayPorts <%= $ssh::server::gatewayports %>
+<% } -%>
+<%- if $ssh::server::x11forwarding { -%>
+X11Forwarding <%= $ssh::server::x11forwarding %>
+<% } -%>
+<%- if $ssh::server::x11displayoffset { -%>
+X11DisplayOffset <%= $ssh::server::x11displayoffset %>
+<% } -%>
+<%- if $ssh::server::x11uselocalhost { -%>
+X11UseLocalhost <%= $ssh::server::x11uselocalhost %>
+<% } -%>
+<%- if $ssh::server::permit_tty { -%>
+PermitTTY <%= $ssh::server::permit_tty %>
+<% } -%>
+<%- if $ssh::server::printmotd { -%>
+PrintMotd <%= $ssh::server::printmotd %>
+<% } -%>
+<%- if $ssh::server::printlastlog { -%>
+PrintLastLog <%= $ssh::server::printlastlog %>
+<% } -%>
 #AllowAgentForwarding yes
 #AllowTcpForwarding yes
 #GatewayPorts no
@@ -160,8 +186,36 @@ X11Forwarding yes
 #PermitTTY yes
 #PrintMotd yes
 #PrintLastLog yes
+
+<%- if $ssh::server::tcpkeepalive { -%>
+TCPKeepAlive <%= $ssh::server::tcpkeepalive %>
+<% } -%>
+<%- if $ssh::server::uselogin { -%>
+UseLogin <%= $ssh::server::uselogin %>
+<% } -%>
 #TCPKeepAlive yes
 #UseLogin no
+<%- if $ssh::server::useprivilegeseparation { -%>
+UsePrivilegeSeparation <%= $ssh::server::useprivilegeseparation %>
+<% } -%>
+<%- if $ssh::server::permituserenvironment { -%>
+PermitUserEnvironment <%= $ssh::server::permituserenvironment %>
+<% } -%>
+<%- if $ssh::server::compression { -%>
+Compression <%= $ssh::server::compression %>
+<% } -%>
+<%- if $ssh::server::clientaliveinterval { -%>
+ClientAliveInterval <%= $ssh::server::clientaliveinterval %>
+<% } -%>
+<%- if $ssh::server::clientalivecountmax { -%>
+ClientAliveCountMax <%= $ssh::server::clientalivecountmax %>
+<% } -%>
+<%- if $ssh::server::showpatchlevel { -%>
+ShowPatchLevel <%= $ssh::server::showpatchlevel %>
+<% } -%>
+<%- if $ssh::server::usedns { -%>
+UseDNS <%= $ssh::server::usedns %>
+<% } -%>
 #UsePrivilegeSeparation sandbox
 #PermitUserEnvironment no
 #Compression delayed
@@ -169,24 +223,45 @@ X11Forwarding yes
 #ClientAliveCountMax 3
 #ShowPatchLevel no
 #UseDNS yes
-UseDNS no
+
+<%- if $ssh::server::pidfile { -%>
+PidFile <%= $ssh::server::pidfile %>
+<% } -%>
+<%- if $ssh::server::maxstartups { -%>
+MaxStartups <%= $ssh::server::maxstartups %>
+<% } -%>
+<%- if $ssh::server::permittunnel { -%>
+PermitTunnel <%= $ssh::server::permittunnel %>
+<% } -%>
+<%- if $ssh::server::chrootdirectory { -%>
+ChrootDirectory <%= $ssh::server::chrootdirectory %>
+<% } -%>
+<%- if $ssh::server::versionaddendum { -%>
+VersionAddendum <%= $ssh::server::versionaddendum %>
+<% } -%>
+<%- if $ssh::server::banner { -%>
+Banner <%= $ssh::server::banner %>
+<% } -%>
 #PidFile /var/run/sshd.pid
 #MaxStartups 10:30:100
 #PermitTunnel no
 #ChrootDirectory none
 #VersionAddendum none
-
-# no default banner path
 #Banner none
 
-# Accept locale-related environment variables
-AcceptEnv LANG LC_CTYPE LC_NUMERIC LC_TIME LC_COLLATE LC_MONETARY LC_MESSAGES
-AcceptEnv LC_PAPER LC_NAME LC_ADDRESS LC_TELEPHONE LC_MEASUREMENT
-AcceptEnv LC_IDENTIFICATION LC_ALL LANGUAGE
-AcceptEnv XMODIFIERS
+<% $ssh::server::acceptenvs.each |$acceptenv| { -%>
+AcceptEnv <%= $acceptenv %>
+<% } -%>
 
-# override default of no subsystems
-Subsystem       sftp    /usr/libexec/openssh/sftp-server
+#AcceptEnv LANG LC_CTYPE LC_NUMERIC LC_TIME LC_COLLATE LC_MONETARY LC_MESSAGES
+#AcceptEnv LC_PAPER LC_NAME LC_ADDRESS LC_TELEPHONE LC_MEASUREMENT
+#AcceptEnv LC_IDENTIFICATION LC_ALL LANGUAGE
+#AcceptEnv XMODIFIERS
+
+<%- if $ssh::server::subsystem { -%>
+Subsystem <%= $ssh::server::subsystem %>
+<% } -%>
+#Subsystem       sftp    /usr/libexec/openssh/sftp-server
 
 # Example of overriding settings on a per-user basis
 #Match User anoncvs
