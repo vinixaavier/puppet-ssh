@@ -24,13 +24,13 @@
 #     - 'LC_IDENTIFICATION LC_ALL LANGUAGE'
 #     - 'XMODIFIERS'
 #
-# @param addressfamily [Optional[Enum['inet', 'inet6', 'any']]]
+# @param addressfamily   [Optional[Enum['inet', 'inet6', 'any']]]
 #   Specifies which address family should be used by sshd. Default value: undef.
 #
 # @param allowagentforwarding [Optional[Enum['yes', 'no']]]
 #   Specifies whether ssh-agent forwarding is permitted. Default value: undef.
 #
-# @param allowgroups [Optional[String]
+# @param allowgroups [Optional[String]]
 #   This keyword can be followed by a list of group name patterns, separated by spaces. Default value: undef.
 #
 # @param allowstreamlocalforwarding [Optional[Enum['yes', 'no', 'all', 'local', 'remote']]]
@@ -39,56 +39,56 @@
 # @param allowtcpforwarding [Optional[Enum['yes', 'no', 'all', 'local', 'remote']]]
 #   Specifies whether TCP forwarding is permitted. Default value: undef.
 #
-# @param allowusers [Optional[String]
+# @param allowusers [Optional[String]]
 #   This keyword can be followed by a list of user name patterns, separated by spaces. Default value: undef.
 #
-# @param authmethods [Optional[String]
+# @param authmethods [Optional[String]]
 #   Specifies the authentication methods that must be successfully completed 
 #   for a user to be granted access. Default value: undef.
 #
-# @param authkeyscommand [Optional[String]
+# @param authkeyscommand [Optional[String]]
 #   Specifies a program to be used to look up the user's public keys. Default value: undef.
 #
-# @param authkeyscommanduser [Optional[String]
+# @param authkeyscommanduser [Optional[String]]
 #   Specifies the user under whose account the AuthorizedKeysCommand is run. Default value: undef.
 #
-# @param authkeysfile [Optional[String]
+# @param authkeysfile [Optional[String]]
 #   Specifies the file that contains the public keys used for user 
 #   authentication. Default value: '.ssh/authorized_keys'.
 #
-# @param authprincipalscommand [Optional[String]
+# @param authprincipalscommand [Optional[String]]
 #   Specifies a program to be used to generate the list of allowed 
 #   certificate principals as per AuthorizedPrincipalsFile. Default value: undef.
 #
-# @param authprincipalscommanduser [Optional[String]
+# @param authprincipalscommanduser [Optional[String]]
 #   Specifies the user under whose account the AuthorizedPrincipalsCommand is run. Default value: undef.
 #
-# @param authprincipalsfile [Optional[String]
+# @param authprincipalsfile [Optional[String]]
 #   Specifies a file that lists principal names that are accepted for 
 #   certificate authentication. Default value: undef.
 #
-# @param banner [Optional[String]
+# @param banner [Optional[String]]
 #   The contents of the specified file are sent to the remote user before 
 #   authentication is allowed. Default value: undef.
 #
 # @param challengeresponseauth [Optional[Enum['yes', 'no']]]
 #   Specifies whether challenge-response authentication is allowed. Default value: 'no'.
 #
-# @param chrootdirectory [Optional[String]
+# @param chrootdirectory [Optional[String]]
 #   Specifies the pathname of a directory to chroot to after authentication. Default value: undef.
 #
-# @param ciphers [Optional[String]
+# @param ciphers [Optional[String]]
 #   Specifies the ciphers allowed. Default value: undef.
 #
-# @param clientalivecountmax [Optional[Integer]
+# @param clientalivecountmax [Optional[Integer]]
 #   Sets the number of client alive messages which may be sent without 
 #   sshd receiving any messages back from the client. Default value: undef.
 #
-# @param clientaliveinterval [Optional[Integer]
+# @param clientaliveinterval [Optional[Integer]]
 #   Sets a timeout interval in seconds after which if no data has been 
 #   received from the client, sshd. Default value: undef.
 #
-# @param compression [Optional[String]
+# @param compression [Optional[String]]
 #   Specifies whether compression is enabled after the user has authenticated 
 #   successfully. Default value: undef.
 #
@@ -110,13 +110,13 @@
 # @param conf_owner [Variant[String, Integer]]
 #   Specifies the owner of the configuration file and directory. Default value: '0' or 'root'.
 #
-# @param denygroups [Optional[String]
+# @param denygroups [Optional[String]]
 #   This keyword can be followed by a list of group name patterns, separated by spaces. Default value: undef.
 #
-# @param denyusers [Optional[String]
+# @param denyusers [Optional[String]]
 #   This keyword can be followed by a list of user name patterns, separated by spaces. Default value: undef.
 #
-# @param disableforwarding [Optional[String]
+# @param disableforwarding [Optional[String]]
 #   Disables all forwarding features, including X11, ssh-agent, TCP and StreamLocal. Default value: undef.
 #
 # @param exposeauthinfo [Optional[Enum['yes', 'no']]]
@@ -126,11 +126,11 @@
 # @param fingerprinthash [Optional[Enum['md5', 'sha256']]]
 #   Specifies the hash algorithm used when logging key fingerprints. Default value: undef.
 #
-# @param forcecommand [Optional[Enum['yes', 'no', 'clientspecified']]]
+# @param forcecommand [Optional[String]]
 #   Forces the execution of the command specified by ForceCommand, ignoring any 
 #   command supplied by the client and ~/.ssh/rc if present. Default value: undef.
 #
-# @param gatewayports [Optional[Enum['yes', 'no']]]
+# @param gatewayports [Optional[Enum['yes', 'no', 'clientspecified']]]
 #   Specifies whether remote hosts are allowed to connect to ports forwarded 
 #   for the client. Default value: undef.
 #
@@ -216,13 +216,13 @@
 # @param kexalgorithms [Optional[String]]
 #   Specifies the available KEX (Key Exchange) algorithms. Default value: undef.
 #
-# @param keyregenerationinterval [Optional[Integer]]
+# @param keyregenerationinterval [Optional[Integer]]]
 #   Specifies interval of regeneration key. Default value: 3600.
 #
 # @param listenaddress [Optional[String]]
 #   Specifies the local addresses sshd(8) should listen on. Default value: undef.
 #
-# @param logingracetime [Optional[Integer]]
+# @param logingracetime [Optional[Integer]]]
 #   The server disconnects after this time if the user has not successfully logged in. Default value: 120.
 #
 # @param log_level [Optional[Pattern[/.*[A-Z]/]]]
@@ -231,10 +231,10 @@
 # @param macs [Optional[String]]
 #   Specifies the available MAC (message authentication code) algorithms. Default value: undef.
 #
-# @param maxauthtries [Optional[Integer]]
+# @param maxauthtries [Optional[Integer]]]
 #   Specifies the maximum number of authentication attempts permitted per connection. Default value: undef.
 #
-# @param maxsessions [Optional[Integer]]
+# @param maxsessions [Optional[Integer]]]
 #   Specifies the maximum number of open shell, login or subsystem (e.g. sftp) 
 #   sessions permitted per network connection. Default value: undef.
 #
@@ -251,7 +251,7 @@
 # @param passwordauth [Optional[Enum['yes', 'no']]]
 #   Specifies whether password authentication is allowed. Default value: 'yes'.
 #
-# @param permitemptypassword Optional[Enum['yes', 'no']]
+# @param permitemptypasswords Optional[Enum['yes', 'no']]
 #   When password authentication is allowed, it specifies whether 
 #   the server allows login to accounts with empty password strings. Default value: 'no'.
 #
@@ -288,7 +288,7 @@
 # @param printmotd [Optional[Enum['yes', 'no']]]
 #   Specifies whether sshd(8) should print /etc/motd when a user logs in interactively. Default value: 'no'.
 #
-# @param protocol [Optional[Integer]]
+# @param protocol [Optional[Integer]]]
 #   Specifies protocol version. Default value: undef.
 #
 # @param pubkeyacceptedkeytypes [Optional[String]]
@@ -314,7 +314,7 @@
 # @param rhostsrsa_auth [Optional[Enum['yes', 'no']]]
 #   Specifies if RHosts RSA authentication should be enabled. Default value: 'yes'.
 #
-# @param serverkeybits [Optional[Integer]]
+# @param serverkeybits [Optional[Integer]]]
 #   Specifies amount bits of server key. Default value: 1024.
 #
 # @param service_enable [Boolean]
@@ -375,7 +375,7 @@
 #   Optionally specifies additional text to append to the SSH protocol 
 #   banner sent by the server upon connection. Default value: undef.
 #
-# @param x11displayoffset [Optional[Integer]]
+# @param x11displayoffset [Optional[Integer]]]
 #   Specifies the first display number available for sshd's X11 forwarding. Default value: 10.
 #
 # @param x11forwarding [Optional[Enum['yes', 'no']]]
@@ -388,141 +388,115 @@
 # @param xauthlocation [Optional[Stdlib::Absolutepath]]
 #   Specifies the full pathname of the xauth. Default value: undef.
 #
-
 class ssh::server (
 
-  Optional[Array]                        $acceptenvs,
-  Optional[Enum[
-    'inet',
-    'inet6',
-    'any'
-    ]]                                   $addressfamily,
-  Optional[Enum['yes', 'no']]            $allowagentforwarding,
-  Optional[String]                       $allowgroups,
-  Optional[Enum[
-    'yes',
-    'no',
-    'all',
-    'local',
-    'remote'
-    ]]                                  $allowtcpforwarding,
-  Optional[Enum[
-    'yes',
-    'no',
-    'all',
-    'local',
-    'remote'
-    ]]                                  $allowstreamlocalforwarding,
-  Optional[String]                      $allowusers,
-  Optional[String]                      $authmethods,
-  Optional[String]                      $authkeyscommand,
-  Optional[String]                      $authkeyscommanduser,
-  Optional[String]                      $authkeysfile,
-  Optional[String]                      $authprincipalscommand,
-  Optional[String]                      $authprincipalscommanduser,
-  Optional[String]                      $authprincipalsfile,
-  Optional[String]                      $banner,
-  Optional[Enum['yes', 'no']]           $challengeresponseauth,
-  Optional[String]                      $chrootdirectory,
-  Optional[String]                      $ciphers,
-  Optional[Integer]                     $clientalivecountmax,
-  Optional[Integer]                     $clientaliveinterval,
-  Optional[String]                      $compression,
-  Stdlib::Absolutepath                  $conf_dir,
-  Stdlib::Filemode                      $conf_dir_mode,
-  Stdlib::Absolutepath                  $conf_file,
-  Stdlib::Filemode                      $conf_file_mode,
-  Variant[String, Integer]              $conf_group,
-  Variant[String, Integer]              $conf_owner,
-  Optional[String]                      $denygroups,
-  Optional[String]                      $denyusers,
-  Optional[String]                      $disableforwarding,
-  Optional[Enum['yes', 'no']]           $exposeauthinfo,
-  Optional[Enum['md5', 'sha256']]       $fingerprinthash,
-  Optional[String]                      $forcecommand,
-  Optional[Enum[
-    'yes',
-    'no',
-    'clientspecified'
-    ]]                                  $gatewayports,
-  Optional[Enum['yes', 'no']]           $gssapiauth,
-  Optional[Enum['yes', 'no']]           $gssapicleanupcredentials,
-  Optional[Enum['yes', 'no']]           $gssapienablek5users,
-  Optional[Enum['yes', 'no']]           $gssapikeyexchange,
-  Optional[Enum['yes', 'no']]           $gssapistrictacceptorcheck,
-  Optional[String]                      $hostbasedacceptedkeytypes,
-  Optional[Enum['yes', 'no']]           $hostbasedauth,
-  Optional[Enum['yes', 'no']]           $hostbasedusesnamefrompacketonly,
-  Optional[String]                      $hostcertificate,
-  Optional[Array[Stdlib::Absolutepath]] $hostkeys,
-  Optional[String]                      $hostkeyagent,
-  Optional[String]                      $hostkeyalgorithms,
-  Optional[Enum['yes', 'no']]           $ignorerhosts,
-  Optional[Enum['yes', 'no']]           $ignoreuserknownhosts,
-  Optional[String]                      $ipqos,
-  Optional[Enum['yes', 'no']]           $kbdinteractiveauth,
-  Optional[Enum['yes', 'no']]           $krbsauth,
-  Optional[Enum['yes', 'no']]           $krbsgetafstoken,
-  Optional[Enum['yes', 'no']]           $krbsorlocalpasswd,
-  Optional[Enum['yes', 'no']]           $krbsticketcleanup,
-  Optional[Enum['yes', 'no']]           $krbsusekuserok,
-  Optional[String]                      $kexalgorithms,
-  Optional[Integer]                     $keyregenerationinterval,
-  Optional[String]                      $listenaddress,
-  Optional[Integer]                     $logingracetime,
-  Optional[Pattern[/.*[A-Z]/]]          $log_level,
-  Optional[String]                      $macs,
-  # Optional[String]                      $match,
-  Optional[Integer]                     $maxauthtries,
-  Optional[Integer]                     $maxsessions,
-  Optional[String]                      $maxstartups,
-  String                                $package_name,
-  Enum['latest', 'present', 'absent']   $package_ensure,
-  Optional[Enum['yes', 'no']]           $passwordauth,
-  Optional[Enum['yes', 'no']]           $permitemptypasswords,
-  Optional[String]                      $permitopen,
-  Optional[Enum[
-    'yes',
-    'no',
-    'prohibit-password',
-    'forced-commands-only'
-    ]]                                  $permitrootlogin,
-  Optional[Enum['yes', 'no']]           $permit_tty,
-  Optional[Enum['yes', 'no']]           $permit_tunnel,
-  Optional[Enum['yes', 'no']]           $permituserenvironment,
-  Optional[Enum['yes', 'no']]           $permituser_rc,
-  Optional[Stdlib::Absolutepath]        $pidfile,
-  Optional[Integer[1,65535]]            $port,
-  Optional[Enum['yes', 'no']]           $printmotd,
-  Optional[Enum['yes', 'no']]           $printlastlog,
-  Optional[Integer]                     $protocol,
-  Optional[String]                      $pubkeyacceptedkeytypes,
-  Optional[Enum['yes', 'no']]           $pubkeyauth,
-  Optional[String]                      $rekeylimit,
-  Optional[String]                      $revokedkeys,
-  Optional[String]                      $rdomain,
-  Optional[Enum['yes', 'no']]           $rhostsrsa_auth,
-  Optional[Integer]                     $serverkeybits,
-  Boolean                               $service_enable,
-  Stdlib::Ensure::Service               $service_ensure,
-  String                                $service_name,
-  Optional[Enum['yes', 'no']]           $showpatchlevel,
-  Optional[Stdlib::Filemode]            $streamlocalbindmask,
-  Optional[Enum['yes', 'no']]           $streamlocalbindunlink,
-  Optional[Enum['yes', 'no']]           $strictmodes,
-  Optional[String]                      $subsystem,
-  Optional[Pattern[/.*[A-Z]/]]          $syslogfacility,
-  Optional[Enum['yes', 'no']]           $tcpkeepalive,
-  Optional[String]                      $trustedusercakeys,
-  Optional[Enum['yes', 'no']]           $usedns,
-  Optional[Enum['yes', 'no']]           $uselogin,
-  Optional[Enum['yes', 'no']]           $usepam,
-  Optional[String]                      $useprivilegeseparation,
-  Optional[String]                      $versionaddendum,
-  Optional[Integer]                     $x11displayoffset,
-  Optional[Enum['yes', 'no']]           $x11forwarding,
-  Optional[Enum['yes', 'no']]           $x11uselocalhost,
-  Optional[Stdlib::Absolutepath]        $xauthlocation,
+  Optional[Array]                                                          $acceptenvs,
+  Optional[Enum['inet', 'inet6', 'any']]                                   $addressfamily,
+  Optional[Enum['yes', 'no']]                                              $allowagentforwarding,
+  Optional[String]                                                         $allowgroups,
+  Optional[Enum['yes', 'no', 'all', 'local', 'remote']]                    $allowtcpforwarding,
+  Optional[Enum['yes', 'no', 'all', 'local', 'remote']]                    $allowstreamlocalforwarding,
+  Optional[String]                                                         $allowusers,
+  Optional[String]                                                         $authmethods,
+  Optional[String]                                                         $authkeyscommand,
+  Optional[String]                                                         $authkeyscommanduser,
+  Optional[String]                                                         $authkeysfile,
+  Optional[String]                                                         $authprincipalscommand,
+  Optional[String]                                                         $authprincipalscommanduser,
+  Optional[String]                                                         $authprincipalsfile,
+  Optional[String]                                                         $banner,
+  Optional[Enum['yes', 'no']]                                              $challengeresponseauth,
+  Optional[String]                                                         $chrootdirectory,
+  Optional[String]                                                         $ciphers,
+  Optional[Integer]                                                        $clientalivecountmax,
+  Optional[Integer]                                                        $clientaliveinterval,
+  Optional[String]                                                         $compression,
+  Stdlib::Absolutepath                                                     $conf_dir,
+  Stdlib::Filemode                                                         $conf_dir_mode,
+  Stdlib::Absolutepath                                                     $conf_file,
+  Stdlib::Filemode                                                         $conf_file_mode,
+  Variant[String, Integer]                                                 $conf_group,
+  Variant[String, Integer]                                                 $conf_owner,
+  Optional[String]                                                         $denygroups,
+  Optional[String]                                                         $denyusers,
+  Optional[String]                                                         $disableforwarding,
+  Optional[Enum['yes', 'no']]                                              $exposeauthinfo,
+  Optional[Enum['md5', 'sha256']]                                          $fingerprinthash,
+  Optional[String]                                                         $forcecommand,
+  Optional[Enum['yes', 'no', 'clientspecified']]                           $gatewayports,
+  Optional[Enum['yes', 'no']]                                              $gssapiauth,
+  Optional[Enum['yes', 'no']]                                              $gssapicleanupcredentials,
+  Optional[Enum['yes', 'no']]                                              $gssapienablek5users,
+  Optional[Enum['yes', 'no']]                                              $gssapikeyexchange,
+  Optional[Enum['yes', 'no']]                                              $gssapistrictacceptorcheck,
+  Optional[String]                                                         $hostbasedacceptedkeytypes,
+  Optional[Enum['yes', 'no']]                                              $hostbasedauth,
+  Optional[Enum['yes', 'no']]                                              $hostbasedusesnamefrompacketonly,
+  Optional[String]                                                         $hostcertificate,
+  Optional[Array[Stdlib::Absolutepath]]                                    $hostkeys,
+  Optional[String]                                                         $hostkeyagent,
+  Optional[String]                                                         $hostkeyalgorithms,
+  Optional[Enum['yes', 'no']]                                              $ignorerhosts,
+  Optional[Enum['yes', 'no']]                                              $ignoreuserknownhosts,
+  Optional[String]                                                         $ipqos,
+  Optional[Enum['yes', 'no']]                                              $kbdinteractiveauth,
+  Optional[Enum['yes', 'no']]                                              $krbsauth,
+  Optional[Enum['yes', 'no']]                                              $krbsgetafstoken,
+  Optional[Enum['yes', 'no']]                                              $krbsorlocalpasswd,
+  Optional[Enum['yes', 'no']]                                              $krbsticketcleanup,
+  Optional[Enum['yes', 'no']]                                              $krbsusekuserok,
+  Optional[String]                                                         $kexalgorithms,
+  Optional[Integer]                                                        $keyregenerationinterval,
+  Optional[String]                                                         $listenaddress,
+  Optional[Integer]                                                        $logingracetime,
+  Optional[Pattern[/.*[A-Z]/]]                                             $log_level,
+  Optional[String]                                                         $macs,
+  # Optional[String]                                                       $match,
+  Optional[Integer]                                                        $maxauthtries,
+  Optional[Integer]                                                        $maxsessions,
+  Optional[String]                                                         $maxstartups,
+  String                                                                   $package_name,
+  Enum['latest', 'present', 'absent']                                      $package_ensure,
+  Optional[Enum['yes', 'no']]                                              $passwordauth,
+  Optional[Enum['yes', 'no']]                                              $permitemptypasswords,
+  Optional[String]                                                         $permitopen,
+  Optional[Enum['yes', 'no', 'prohibit-password', 'forced-commands-only']] $permitrootlogin,
+  Optional[Enum['yes', 'no']]                                              $permit_tty,
+  Optional[Enum['yes', 'no']]                                              $permit_tunnel,
+  Optional[Enum['yes', 'no']]                                              $permituserenvironment,
+  Optional[Enum['yes', 'no']]                                              $permituser_rc,
+  Optional[Stdlib::Absolutepath]                                           $pidfile,
+  Optional[Integer[1,65535]]                                               $port,
+  Optional[Enum['yes', 'no']]                                              $printmotd,
+  Optional[Enum['yes', 'no']]                                              $printlastlog,
+  Optional[Integer]                                                        $protocol,
+  Optional[String]                                                         $pubkeyacceptedkeytypes,
+  Optional[Enum['yes', 'no']]                                              $pubkeyauth,
+  Optional[String]                                                         $rekeylimit,
+  Optional[String]                                                         $revokedkeys,
+  Optional[String]                                                         $rdomain,
+  Optional[Enum['yes', 'no']]                                              $rhostsrsa_auth,
+  Optional[Integer]                                                        $serverkeybits,
+  Boolean                                                                  $service_enable,
+  Stdlib::Ensure::Service                                                  $service_ensure,
+  String                                                                   $service_name,
+  Optional[Enum['yes', 'no']]                                              $showpatchlevel,
+  Optional[Stdlib::Filemode]                                               $streamlocalbindmask,
+  Optional[Enum['yes', 'no']]                                              $streamlocalbindunlink,
+  Optional[Enum['yes', 'no']]                                              $strictmodes,
+  Optional[String]                                                         $subsystem,
+  Optional[Pattern[/.*[A-Z]/]]                                             $syslogfacility,
+  Optional[Enum['yes', 'no']]                                              $tcpkeepalive,
+  Optional[String]                                                         $trustedusercakeys,
+  Optional[Enum['yes', 'no']]                                              $usedns,
+  Optional[Enum['yes', 'no']]                                              $uselogin,
+  Optional[Enum['yes', 'no']]                                              $usepam,
+  Optional[String]                                                         $useprivilegeseparation,
+  Optional[String]                                                         $versionaddendum,
+  Optional[Integer]                                                        $x11displayoffset,
+  Optional[Enum['yes', 'no']]                                              $x11forwarding,
+  Optional[Enum['yes', 'no']]                                              $x11uselocalhost,
+  Optional[Stdlib::Absolutepath]                                           $xauthlocation,
 
 ) {
 
