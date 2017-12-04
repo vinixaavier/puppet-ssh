@@ -1,5 +1,1 @@
-node default {
-
-  class { 'ssh::server': }
-
-}
+class { 'ssh::server': }

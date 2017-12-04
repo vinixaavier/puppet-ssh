@@ -1,13 +1,12 @@
 # ssh
 #
-# A description of what this class does
+# Main class to module SSH. Dot not use directly, but this module manage two functionality:
+# ssh server and ssh client.
 #
-# @summary A short summary of the purpose of this class
+# @summary Main class to module SSH.
 #
-# @example
-#   include ssh
 class ssh {
 
-  notice('Do not use this class to manage SSH. Use ssh::server or ssh::client.')
+  notice('Do not use this class to manage SSH. Use ssh::server or ssh::client classes.')
 
 }

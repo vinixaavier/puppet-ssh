@@ -1,5 +1,97 @@
-# sshd_config: Managed by Puppet.
+#############################################################
+### sshd_config: Managed by Puppet. Do not edit directly. ###
+#############################################################
 
+<%- if $ssh::server::protocol { -%>
+Protocol <%= $ssh::server::protocol %>
+<% } -%>
+<%- if $ssh::server::rhostsrsa_auth { -%>
+RhostsRSAAuthentication <%= $ssh::server::rhostsrsa_auth %>
+<% } -%>
+<%- if $ssh::server::xauthlocation { -%>
+XAuthLocation <%= $ssh::server::xauthlocation %>
+<% } -%>
+<%- if $ssh::server::trustedusercakeys { -%>
+TrustedUserCAKeys <%= $ssh::server::trustedusercakeys %>
+<% } -%>
+<%- if $ssh::server::streamlocalbindunlink { -%>
+StreamLocalBindUnlink <%= $ssh::server::streamlocalbindunlink %>
+<% } -%>
+<%- if $ssh::server::streamlocalbindmask { -%>
+StreamLocalBindMask <%= $ssh::server::streamlocalbindmask %>
+<% } -%>
+<%- if $ssh::server::rdomain { -%>
+RDomain <%= $ssh::server::rdomain %>
+<% } -%>
+<%- if $ssh::server::revokedkeys { -%>
+RevokedKeys <%= $ssh::server::revokedkeys %>
+<% } -%>
+<%- if $ssh::server::pubkeyacceptedkeytypes { -%>
+PubkeyAcceptedKeyTypes <%= $ssh::server::pubkeyacceptedkeytypes %>
+<% } -%>
+<%- if $ssh::server::permituser_rc { -%>
+PermitUserRC <%= $ssh::server::permituser_rc %>
+<% } -%>
+<%- if $ssh::server::permitopen { -%>
+PermitOpen <%= $ssh::server::permitopen %>
+<% } -%>
+<%- if $ssh::server::kexalgorithms { -%>
+KexAlgorithms <%= $ssh::server::kexalgorithms %>
+<% } -%>
+<%- if $ssh::server::exposeauthinfo { -%>
+ExposeAuthInfo <%= $ssh::server::exposeauthinfo %>
+<% } -%>
+<%- if $ssh::server::kbdinteractiveauth { -%>
+KbdInteractiveAuthentication <%= $ssh::server::kbdinteractiveauth %>
+<% } -%>
+<%- if $ssh::server::ipqos { -%>
+IPQoS <%= $ssh::server::ipqos %>
+<% } -%>
+<%- if $ssh::server::hostkeyagent { -%>
+HostKeyAgent <%= $ssh::server::hostkeyagent %>
+<% } -%>
+<%- if $ssh::server::hostkeyalgorithms { -%>
+HostKeyAlgorithms <%= $ssh::server::hostkeyalgorithms %>
+<% } -%>
+<%- if $ssh::server::hostcertificate { -%>
+HostCertificate <%= $ssh::server::hostcertificate %>
+<% } -%>
+<%- if $ssh::server::hostbasedusesnamefrompacketonly { -%>
+HostbasedUsesNameFromPacketOnly <%= $ssh::server::hostbasedusesnamefrompacketonly %>
+<% } -%>
+<%- if $ssh::server::hostbasedacceptedkeytypes { -%>
+HostbasedAcceptedKeyTypes <%= $ssh::server::hostbasedacceptedkeytypes %>
+<% } -%>
+<%- if $ssh::server::forcecommand { -%>
+ForceCommand <%= $ssh::server::forcecommand %>
+<% } -%>
+<%- if $ssh::server::fingerprinthash { -%>
+FingerprintHash <%= $ssh::server::fingerprinthash %>
+<% } -%>
+<%- if $ssh::server::denyusers { -%>
+DenyUsers <%= $ssh::server::denyusers %>
+<% } -%>
+<%- if $ssh::server::denygroups { -%>
+DenyGroups <%= $ssh::server::denygroups %>
+<% } -%>
+<%- if $ssh::server::ciphers { -%>
+Ciphers <%= $ssh::server::ciphers %>
+<% } -%>
+<%- if $ssh::server::authprincipalscommanduser { -%>
+AuthorizedPrincipalsCommandUser <%= $ssh::server::authprincipalscommanduser %>
+<% } -%>
+<%- if $ssh::server::authprincipalscommand { -%>
+AuthorizedPrincipalsCommand <%= $ssh::server::authprincipalscommand %>
+<% } -%>
+<%- if $ssh::server::allowstreamlocalforwarding { -%>
+AllowStreamLocalForwarding <%= $ssh::server::allowstreamlocalforwarding %>
+<% } -%>
+<%- if $ssh::server::allowusers { -%>
+AllowUsers <%= $ssh::server::allowusers %>
+<% } -%>
+<%- if $ssh::server::allowgroups { -%>
+AllowGroups <%= $ssh::server::allowgroups %>
+<% } -%>
 <%- if $ssh::server::port { -%>
 Port <%= $ssh::server::port %>
 <% } -%>
@@ -9,39 +101,21 @@ AddressFamily <%= $ssh::server::addressfamily %>
 <%- if $ssh::server::listenaddress { -%>
 RekeyLimit <%= $ssh::server::listenaddress %>
 <% } -%>
-#Port 22
-#AddressFamily any
-#ListenAddress 0.0.0.0
-#ListenAddress ::
-
+<%- if $ssh::server::listenaddress { -%>
+RekeyLimit <%= $ssh::server::listenaddress %>
+<% } -%>
 <% $ssh::server::hostkeys.each |$hostkey| { -%>
 HostKey <%= $hostkey %>
 <% } -%>
-
-#HostKey /etc/ssh/ssh_host_rsa_key
-#HostKey /etc/ssh/ssh_host_dsa_key
-#HostKey /etc/ssh/ssh_host_ecdsa_key
-#HostKey /etc/ssh/ssh_host_ed25519_key
-
-
-# Ciphers and keying
 <%- if $ssh::server::rekeylimit { -%>
 RekeyLimit <%= $ssh::server::rekeylimit %>
 <% } -%>
-#RekeyLimit default none
-
-# Logging
 <%- if $ssh::server::syslogfacility { -%>
 SyslogFacility <%= $ssh::server::syslogfacility %>
 <% } -%>
 <%- if $ssh::server::log_level { -%>
 LogLevel <%= $ssh::server::log_level %>
 <% } -%>
-#SyslogFacility AUTH
-#SyslogFacility AUTHPRIV
-#LogLevel INFO
-
-# Authentication:
 <%- if $ssh::server::logingracetime { -%>
 LoginGraceTime <%= $ssh::server::logingracetime %>
 <% } -%>
@@ -72,17 +146,6 @@ AuthorizedKeysCommand <%= $ssh::server::authkeyscommand %>
 <%- if $ssh::server::authkeyscommanduser { -%>
 AuthorizedKeysCommandUser <%= $ssh::server::authkeyscommanduser %>
 <% } -%>
-#LoginGraceTime 2m
-#PermitRootLogin yes
-#StrictModes yes
-#MaxAuthTries 6
-#MaxSessions 10
-#PubkeyAuthentication yes
-#AuthorizedKeysFile      .ssh/authorized_keys
-#AuthorizedPrincipalsFile none
-#AuthorizedKeysCommand none
-#AuthorizedKeysCommandUser nobody
-
 <%- if $ssh::server::hostbasedauth { -%>
 HostbasedAuthentication <%= $ssh::server::hostbasedauth %>
 <% } -%>
@@ -92,24 +155,15 @@ IgnoreUserKnownHosts <%= $ssh::server::ignoreuserknownhosts %>
 <%- if $ssh::server::ignorerhosts { -%>
 IgnoreRhosts <%= $ssh::server::ignorerhosts %>
 <% } -%>
-#HostbasedAuthentication no
-#IgnoreUserKnownHosts no
-#IgnoreRhosts yes
-
 <%- if $ssh::server::passwordauth { -%>
 PasswordAuthentication <%= $ssh::server::passwordauth %>
 <% } -%>
-<%- if $ssh::server::permitemptypassword { -%>
-PermitEmptyPasswords <%= $ssh::server::permitemptypassword %>
+<%- if $ssh::server::permitemptypasswords { -%>
+PermitEmptyPasswords <%= $ssh::server::permitemptypasswords %>
 <% } -%>
 <%- if $ssh::server::challengeresponseauth { -%>
 ChallengeResponseAuthentication <%= $ssh::server::challengeresponseauth %>
 <% } -%>
-#PasswordAuthentication yes
-#PermitEmptyPasswords no
-#ChallengeResponseAuthentication yes
-
-# Kerberos options
 <%- if $ssh::server::krbsauth { -%>
 KerberosAuthentication <%= $ssh::server::krbsauth %>
 <% } -%>
@@ -125,13 +179,6 @@ KerberosGetAFSToken <%= $ssh::server::krbsgetafstoken %>
 <%- if $ssh::server::krbsusekuserok { -%>
 KerberosUseKuserok <%= $ssh::server::krbsusekuserok %>
 <% } -%>
-#KerberosAuthentication no
-#KerberosOrLocalPasswd yes
-#KerberosTicketCleanup yes
-#KerberosGetAFSToken no
-#KerberosUseKuserok yes
-
-# GSSAPI options
 <%- if $ssh::server::gssapiauth { -%>
 GSSAPIAuthentication <%= $ssh::server::gssapiauth %>
 <% } -%>
@@ -147,17 +194,9 @@ GSSAPIKeyExchange <%= $ssh::server::gssapikeyexchange %>
 <%- if $ssh::server::gssapienablek5users { -%>
 GSSAPIEnablek5users <%= $ssh::server::gssapienablek5users %>
 <% } -%>
-#GSSAPIAuthentication yes
-#GSSAPICleanupCredentials no
-#GSSAPIStrictAcceptorCheck yes
-#GSSAPIKeyExchange no
-#GSSAPIEnablek5users no
-
 <%- if $ssh::server::usepam { -%>
 UsePAM <%= $ssh::server::usepam %>
 <% } -%>
-#UsePAM yes
-
 <%- if $ssh::server::allowagentforwarding { -%>
 AllowAgentForwarding <%= $ssh::server::allowagentforwarding %>
 <% } -%>
@@ -185,24 +224,12 @@ PrintMotd <%= $ssh::server::printmotd %>
 <%- if $ssh::server::printlastlog { -%>
 PrintLastLog <%= $ssh::server::printlastlog %>
 <% } -%>
-#AllowAgentForwarding yes
-#AllowTcpForwarding yes
-#GatewayPorts no
-#X11Forwarding yes
-#X11DisplayOffset 10
-#X11UseLocalhost yes
-#PermitTTY yes
-#PrintMotd yes
-#PrintLastLog yes
-
 <%- if $ssh::server::tcpkeepalive { -%>
 TCPKeepAlive <%= $ssh::server::tcpkeepalive %>
 <% } -%>
 <%- if $ssh::server::uselogin { -%>
 UseLogin <%= $ssh::server::uselogin %>
 <% } -%>
-#TCPKeepAlive yes
-#UseLogin no
 <%- if $ssh::server::useprivilegeseparation { -%>
 UsePrivilegeSeparation <%= $ssh::server::useprivilegeseparation %>
 <% } -%>
@@ -230,14 +257,6 @@ ShowPatchLevel <%= $ssh::server::showpatchlevel %>
 <%- if $ssh::server::usedns { -%>
 UseDNS <%= $ssh::server::usedns %>
 <% } -%>
-#UsePrivilegeSeparation sandbox
-#PermitUserEnvironment no
-#Compression delayed
-#ClientAliveInterval 0
-#ClientAliveCountMax 3
-#ShowPatchLevel no
-#UseDNS yes
-
 <%- if $ssh::server::pidfile { -%>
 PidFile <%= $ssh::server::pidfile %>
 <% } -%>
@@ -256,34 +275,13 @@ VersionAddendum <%= $ssh::server::versionaddendum %>
 <%- if $ssh::server::banner { -%>
 Banner <%= $ssh::server::banner %>
 <% } -%>
-#PidFile /var/run/sshd.pid
-#MaxStartups 10:30:100
-#PermitTunnel no
-#ChrootDirectory none
-#VersionAddendum none
-#Banner none
-
 <% $ssh::server::acceptenvs.each |$acceptenv| { -%>
 AcceptEnv <%= $acceptenv %>
 <% } -%>
-
-#AcceptEnv LANG LC_CTYPE LC_NUMERIC LC_TIME LC_COLLATE LC_MONETARY LC_MESSAGES
-#AcceptEnv LC_PAPER LC_NAME LC_ADDRESS LC_TELEPHONE LC_MEASUREMENT
-#AcceptEnv LC_IDENTIFICATION LC_ALL LANGUAGE
-#AcceptEnv XMODIFIERS
-
 <%- if $ssh::server::subsystem { -%>
 Subsystem <%= $ssh::server::subsystem %>
 <% } -%>
-#Subsystem       sftp    /usr/libexec/openssh/sftp-server
 
-#<% $ssh::server::match.each |$key, $value| { -%>
-#Match User <%= $acceptenv %>
-#   <%= $key %> <%= $value %>
-#<% } -%>
-# Example of overriding settings on a per-user basis
-#Match User anoncvs
-#       X11Forwarding no
-#       AllowTcpForwarding no
-#       PermitTTY no
-#       ForceCommand cvs server
+#############################################################
+### sshd_config: Managed by Puppet. Do not edit directly. ###
+#############################################################

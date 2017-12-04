@@ -1,0 +1,14 @@
+{
+    "description": "Allows you to perform sshd service functions",
+    "input_method": "stdin",
+    "parameters": {
+      "action": {
+        "description": "Action to perform ",
+        "type": "Enum[restart]"
+      },
+      "service_name": {
+        "description": "The name of the sshd service ",
+        "type": "Optional[String[1]]"
+      }
+    }
+  }

@@ -1,87 +1,118 @@
 ---
 # SSH Server Configuration
-ssh::server::package_name: 'openssh-server'
-ssh::server::package_ensure: latest
-ssh::server::conf_dir: '/etc/ssh'
-ssh::server::conf_dir_mode: '0755'
-ssh::server::conf_file: '/etc/ssh/sshd_config'
-ssh::server::conf_file_mode: '0644'
-ssh::server::conf_owner: 0
-ssh::server::conf_group: 0
-ssh::server::service_ensure: running
-ssh::server::service_enable: true
-ssh::server::port: ~
-ssh::server::addressfamily: ~
-ssh::server::listenaddress: ~
-ssh::server::hostkeys:
-  - '/etc/ssh/ssh_host_rsa_key'
-  - '/etc/ssh/ssh_host_ecdsa_key'
-  - '/etc/ssh/ssh_host_ed25519_key'
-ssh::server::rekeylimit: ~
-ssh::server::syslogfacility: 'AUTHPRIV'
-ssh::server::log_level: ~
-ssh::server::logingracetime: ~
-ssh::server::permitrootlogin: ~
-ssh::server::strictmodes: ~
-ssh::server::maxauthtries: ~
-ssh::server::maxsessions: ~
-ssh::server::pubkeyauth: ~
-ssh::server::authkeysfile: '.ssh/authorized_keys'
-ssh::server::authprincipalsfile:  ~
-ssh::server::authkeyscommand: ~
-ssh::server::authkeyscommanduser: ~
-ssh::server::hostbasedauth: ~
-ssh::server::ignoreuserknownhosts: ~
-ssh::server::ignorerhosts: ~
-ssh::server::passwordauth: 'no'
-ssh::server::permitemptypassword: ~
-ssh::server::challengeresponseauth: 'no'
-ssh::server::krbsauth: ~
-ssh::server::krbsorlocalpasswd: ~
-ssh::server::krbsticketcleanup: ~
-ssh::server::krbsgetafstoken: ~
-ssh::server::krbsusekuserok: ~
-ssh::server::gssapiauth: 'yes'
-ssh::server::gssapicleanupcredentials: 'no'
-ssh::server::gssapistrictacceptorcheck: ~
-ssh::server::gssapikeyexchange: ~
-ssh::server::gssapienablek5users: ~
-ssh::server::usepam: 'yes'
-ssh::server::allowagentforwarding: ~
-ssh::server::allowtcpforwarding: ~
-ssh::server::gatewayports: ~
-ssh::server::x11forwarding: 'yes'
-ssh::server::x11displayoffset: ~
-ssh::server::x11uselocalhost: ~
-ssh::server::permit_tty: ~
-ssh::server::printmotd: ~
-ssh::server::printlastlog: ~
-ssh::server::tcpkeepalive: ~
-ssh::server::uselogin: ~
-ssh::server::useprivilegeseparation: ~
-ssh::server::keyregenerationinterval: ~
-ssh::server::serverkeybits: ~
-ssh::server::permituserenvironment: ~
-ssh::server::compression: ~
-ssh::server::clientaliveinterval: ~
-ssh::server::clientalivecountmax: ~
-ssh::server::showpatchlevel: ~
-ssh::server::usedns: 'no'
-ssh::server::pidfile: ~
-ssh::server::maxstartups: ~
-ssh::server::permit_tunnel: ~
-ssh::server::chrootdirectory: ~
-ssh::server::versionaddendum: ~
-ssh::server::banner: ~
 ssh::server::acceptenvs:
   - 'LANG LC_CTYPE LC_NUMERIC LC_TIME LC_COLLATE LC_MONETARY LC_MESSAGES'
   - 'LC_PAPER LC_NAME LC_ADDRESS LC_TELEPHONE LC_MEASUREMENT'
   - 'LC_IDENTIFICATION LC_ALL LANGUAGE'
   - 'XMODIFIERS'
+ssh::server::addressfamily: ~
+ssh::server::allowagentforwarding: 
+ssh::server::allowgroups: ~
+ssh::server::allowtcpforwarding: ~
+ssh::server::allowstreamlocalforwarding: ~
+ssh::server::allowusers: ~
+ssh::server::authmethods: ~
+ssh::server::authkeyscommand: ~
+ssh::server::authkeyscommanduser: ~
+ssh::server::authkeysfile: '.ssh/authorized_keys'
+ssh::server::authprincipalscommand: ~
+ssh::server::authprincipalscommanduser: ~
+ssh::server::authprincipalsfile: ~
+ssh::server::banner: ~
+ssh::server::challengeresponseauth: 'no'
+ssh::server::chrootdirectory: ~
+ssh::server::ciphers: ~
+ssh::server::clientalivecountmax: ~
+ssh::server::clientaliveinterval: ~
+ssh::server::compression: ~
+ssh::server::conf_dir: '/etc/ssh'
+ssh::server::conf_dir_mode: '0755'
+ssh::server::conf_file: '/etc/ssh/sshd_config'
+ssh::server::conf_file_mode: '0644'
+ssh::server::conf_group: 0
+ssh::server::conf_owner: 0
+ssh::server::denygroups: ~
+ssh::server::denyusers: ~
+ssh::server::disableforwarding: ~
+ssh::server::exposeauthinfo: ~
+ssh::server::fingerprinthash: ~
+ssh::server::forcecommand: ~
+ssh::server::gatewayports: ~
+ssh::server::gssapiauth: 'yes'
+ssh::server::gssapicleanupcredentials: 'no'
+ssh::server::gssapienablek5users: ~
+ssh::server::gssapikeyexchange: ~
+ssh::server::gssapistrictacceptorcheck: ~
+ssh::server::hostbasedacceptedkeytypes: ~
+ssh::server::hostbasedauth: 'no'
+ssh::server::hostbasedusesnamefrompacketonly: ~
+ssh::server::hostcertificate: ~
+ssh::server::hostkeys:
+  - '/etc/ssh/ssh_host_rsa_key'
+  - '/etc/ssh/ssh_host_ecdsa_key'
+  - '/etc/ssh/ssh_host_ed25519_key'
+  - '/etc/ssh/ssh_host_dsa_key'
+ssh::server::hostkeyagent: ~
+ssh::server::hostkeyalgorithms: ~
+ssh::server::ignorerhosts: ~
+ssh::server::ignoreuserknownhosts: ~
+ssh::server::ipqos: ~
+ssh::server::kbdinteractiveauth: ~
+ssh::server::krbsauth: ~
+ssh::server::krbsgetafstoken: ~
+ssh::server::krbsorlocalpasswd: ~
+ssh::server::krbsticketcleanup: ~
+ssh::server::krbsusekuserok: ~
+ssh::server::kexalgorithms: ~
+ssh::server::keyregenerationinterval: 3600
+ssh::server::listenaddress: ~
+ssh::server::logingracetime: 120
+ssh::server::log_level: 'INFO'
+ssh::server::macs: ~
+ssh::server::maxauthtries: ~
+ssh::server::maxsessions: ~
+ssh::server::maxstartups: ~
+ssh::server::package_name: 'openssh-server'
+ssh::server::package_ensure: 'latest'
+ssh::server::passwordauth: 'yes'
+ssh::server::permitemptypasswords: 'no'
+ssh::server::permitopen: ~
+ssh::server::permitrootlogin: ~
+ssh::server::permit_tty: ~
+ssh::server::permit_tunnel: ~
+ssh::server::permituserenvironment: ~
+ssh::server::permituser_rc: ~
+ssh::server::pidfile: ~
+ssh::server::port: ~
+ssh::server::printmotd: 'no'
+ssh::server::printlastlog: 'yes'
+ssh::server::protocol: ~
+ssh::server::pubkeyacceptedkeytypes: ~
+ssh::server::pubkeyauth: ~
+ssh::server::rekeylimit: ~
+ssh::server::revokedkeys: ~
+ssh::server::rdomain: ~
+ssh::server::rhostsrsa_auth: 'no'
+ssh::server::serverkeybits: 1024
+ssh::server::service_enable: true
+ssh::server::service_ensure: 'running'
+ssh::server::showpatchlevel: ~
+ssh::server::streamlocalbindmask: ~
+ssh::server::streamlocalbindunlink: ~
+ssh::server::strictmodes: 'yes'
 ssh::server::subsystem: 'sftp /usr/libexec/openssh/sftp-server'
+ssh::server::syslogfacility: 'AUTHPRIV'
+ssh::server::tcpkeepalive: 'yes'
+ssh::server::trustedusercakeys: ~
+ssh::server::usedns: 'no'
+ssh::server::uselogin: ~
+ssh::server::usepam: 'yes'
+ssh::server::useprivilegeseparation: 'yes'
+ssh::server::versionaddendum: ~
+ssh::server::x11displayoffset: 10
+ssh::server::x11forwarding: 'yes'
+ssh::server::x11uselocalhost: ~
+ssh::server::xauthlocation: ~
 
-
-# SSH Client Configuration:
-
-
+# SSH Client Configuration
 ...

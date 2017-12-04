@@ -1,11 +1,10 @@
 # ssh::server::install
 #
-# A description of what this class does
+# This is a private class to install ssh packages.
+# Do not use directly.
 #
-# @summary A short summary of the purpose of this class
+# @summary Private class to install SSH Server.
 #
-# @example
-#   include ssh::server::install
 class ssh::server::install inherits ssh::server {
 
   package { $ssh::server::package_name:

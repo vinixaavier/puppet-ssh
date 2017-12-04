@@ -1,11 +1,10 @@
 # ssh::server::service
 #
-# A description of what this class does
+# This is a private class to manage ssh service.
+# Do not use directly.
 #
-# @summary A short summary of the purpose of this class
+# @summary Private class to manage SSH Server service.
 #
-# @example
-#   include ssh::server::service
 class ssh::server::service inherits ssh::server {
 
   service { $ssh::server::service_name:
