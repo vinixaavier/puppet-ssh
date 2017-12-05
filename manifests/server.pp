@@ -220,7 +220,7 @@
 #   Specifies interval of regeneration key. Default value: 3600.
 #
 # @param listenaddress [Optional[String]]
-#   Specifies the local addresses sshd(8) should listen on. Default value: undef.
+#   Specifies the local addresses sshd should listen on. Default value: undef.
 #
 # @param logingracetime [Optional[Integer]]]
 #   The server disconnects after this time if the user has not successfully logged in. Default value: 120.

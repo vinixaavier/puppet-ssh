@@ -1,15 +1,7 @@
 
+[![Build Status](https://travis-ci.org/vinixavier/puppet-ssh.svg?branch=master)](https://travis-ci.org/vinixavier/puppet-ssh)  ![License](https://img.shields.io/badge/license-Apache%202-blue.svg) ![Version](https://img.shields.io/puppetforge/v/viniciusxavier/ssh.svg) ![Downloads](https://img.shields.io/puppetforge/dt/viniciusxavier/ssh.svg)
+
 # ssh
-
-Welcome to your new module. A short overview of the generated parts can be found in the PDK documentation at https://docs.puppet.com/pdk/1.0/pdk_generating_modules.html#module-contents .
-
-Below you'll find the default README template ready for some content.
-
-
-
-
-
-
 
 #### Table of Contents
 
@@ -25,35 +17,65 @@ Below you'll find the default README template ready for some content.
 
 ## Description
 
-Start with a one- or two-sentence summary of what the module does and/or what problem it solves. This is your 30-second elevator pitch for your module. Consider including OS/Puppet version it works with.
-
-You can give more descriptive information in a second paragraph. This paragraph should answer the questions: "What does this module *do*?" and "Why would I use it?" If your module has a range of functionality (installation, configuration, management, etc.), this is the time to mention it.
+The ssh module installs, configures, and manages the SSH Server service and SSH Client across a range of operating systems and distributions.
 
 ## Setup
 
 ### What ssh affects **OPTIONAL**
 
-If it's obvious what your module touches, you can skip this section. For example, folks can probably figure out that your mysql_instance module affects their MySQL instances.
+* Package, configuration file and service.
+* Listened ports
 
-If there's more that they should know about, though, this is the place to mention:
+### Setup Requirements
 
-* Files, packages, services, or operations that the module will alter, impact, or execute.
-* Dependencies that your module automatically installs.
-* Warnings or other important notices.
-
-### Setup Requirements **OPTIONAL**
-
-If your module requires anything extra before setting up (pluginsync enabled, another module, etc.), mention it here.
-
-If your most recent release breaks compatibility or requires particular steps for upgrading, you might want to include an additional "Upgrading" section here.
+* Puppet >= 4.10
+* Facter >= 2.0
+* [Stdlib Module](https://github.com/puppetlabs/puppetlabs-stdlib)
 
 ### Beginning with ssh
 
-The very basic steps needed for a user to get the module up and running. This can include setup steps, if necessary, or it can be an example of the most basic use of the module.
+`include ::ssh::server` is enough to get you up and running with default parameters.
+You can pass the parameters which if permit root login, allow password authentication and public key authentication, like this:
+
+```puppet
+class { '::ssh::server':
+  permitrootlogin => 'yes',
+  pubkeyauth      => 'yes',
+  passwordauth    => 'yes',
+}
+```
 
 ## Usage
 
-This section is where you describe how to customize, configure, and do the fancy stuff with your module here. It's especially helpful if you include usage examples and code samples for doing things with your module.
+All parameters for the ssh module are contained within the main class to SSH Server and main class to SSH Client.
+Set the options you want and see the common usages below for examples.
+
+### Install ssh server and enable with default parameters
+
+```puppet
+include ::ssh::server
+```
+
+
+### Change port, allow ipv6 and set listen address
+
+```puppet
+class { '::ssh::server':
+  port            => 5000,
+  addressfamily   => 'inet6',
+  listenaddress   => '192.168.200.10',
+}
+```
+
+### Disable DNS resolution, set banner file path and allow which groups can access server
+
+```puppet
+class { '::ssh::server':
+  usedns      => 'no',
+  banner      => '/etc/default/banner',
+  allowgroups => ['sysadmins', 'engineers'],
+}
+```
 
 ## Reference
 
@@ -641,7 +663,7 @@ Optional.
 
 Data type: String.
 
-Specifies the local addresses sshd(8) should listen on.
+Specifies the local addresses sshd should listen on.
 
 Default value: undef.
 
@@ -1118,12 +1140,17 @@ Default value: undef.
 
 ## Limitations
 
-This is where you list OS compatibility, version compatibility, etc. If there are Known Issues, you might want to include them under their own heading here.
+This module has been tested on:
+
+* Centos 7
+* Ubuntu 16.04
+* Debian 9
+* Fedora 26
+* Oracle Linux
+* RedHat
 
 ## Development
 
-Since your module is awesome, other users will want to play with it. Let them know what the ground rules for contributing are.
+Puppet modules on the Puppet Forge are open projects, and community contributions are essential for keeping them great. Please follow our guidelines when contributing changes.
 
-## Release Notes/Contributors/Etc. **Optional**
-
-If you aren't using changelog, put your release notes here (though you should consider using changelog). You can also add any additional sections you feel are necessary or important to include here. Please use the `## ` header.
+For more information, see our [module contribution guide.](https://github.com/otherskins/puppet-ansible/blob/master/CONTRIBUTING.md)

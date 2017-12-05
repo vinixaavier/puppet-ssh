@@ -58,14 +58,13 @@
       </div>
 
       <div id="content"><div id='filecontents'>
+<p><a href="https://travis-ci.org/vinixavier/puppet-ssh"><img
+src="https://travis-ci.org/vinixavier/puppet-ssh.svg?branch=master"></a>
+<img src="https://img.shields.io/badge/license-Apache%202-blue.svg"> <img
+src="https://img.shields.io/puppetforge/v/viniciusxavier/ssh.svg"> <img
+src="https://img.shields.io/puppetforge/dt/viniciusxavier/ssh.svg"></p>
+
 <h1 id="label-ssh">ssh</h1>
-
-<p>Welcome to your new module. A short overview of the generated parts can be
-found in the PDK documentation at <a
-href="https://docs.puppet.com/pdk/1.0/pdk_generating_modules.html#module-contents">docs.puppet.com/pdk/1.0/pdk_generating_modules.html#module-contents</a>
-.</p>
-
-<p>Below you&#39;ll find the default README template ready for some content.</p>
 
 <h4 id="label-Table+of+Contents">Table of Contents</h4>
 <ol><li>
@@ -94,49 +93,44 @@ module</a></p>
 
 <h2 id="label-Description">Description</h2>
 
-<p>Start with a one- or two-sentence summary of what the module does and/or
-what problem it solves. This is your 30-second elevator pitch for your
-module. Consider including OS/Puppet version it works with.</p>
-
-<p>You can give more descriptive information in a second paragraph. This
-paragraph should answer the questions: “What does this module <em>do</em>?”
-and “Why would I use it?” If your module has a range of functionality
-(installation, configuration, management, etc.), this is the time to
-mention it.</p>
+<p>The ssh module installs, configures, and manages the SSH Server service and
+SSH Client across a range of operating systems and distributions.</p>
 
 <h2 id="label-Setup">Setup</h2>
 
 <h3 id="label-What+ssh+affects+OPTIONAL">What ssh affects <strong>OPTIONAL</strong></h3>
-
-<p>If it&#39;s obvious what your module touches, you can skip this section.
-For example, folks can probably figure out that your mysql_instance module
-affects their MySQL instances.</p>
-
-<p>If there&#39;s more that they should know about, though, this is the place
-to mention:</p>
 <ul><li>
-<p>Files, packages, services, or operations that the module will alter,
-impact, or execute.</p>
+<p>Package, configuration file and service.</p>
 </li><li>
-<p>Dependencies that your module automatically installs.</p>
-</li><li>
-<p>Warnings or other important notices.</p>
+<p>Listened ports</p>
 </li></ul>
 
-<h3 id="label-Setup+Requirements+OPTIONAL">Setup Requirements <strong>OPTIONAL</strong></h3>
-
-<p>If your module requires anything extra before setting up (pluginsync
-enabled, another module, etc.), mention it here.</p>
-
-<p>If your most recent release breaks compatibility or requires particular
-steps for upgrading, you might want to include an additional “Upgrading”
-section here.</p>
+<h3 id="label-Setup+Requirements">Setup Requirements</h3>
+<ul><li>
+<p>Puppet &gt;= 4.10</p>
+</li><li>
+<p>Facter &gt;= 2.0</p>
+</li><li>
+<p><a href="https://github.com/puppetlabs/puppetlabs-stdlib">Stdlib Module</a></p>
+</li></ul>
 
 <h3 id="label-Beginning+with+ssh">Beginning with ssh</h3>
 
-<p>The very basic steps needed for a user to get the module up and running.
-This can include setup steps, if necessary, or it can be an example of the
-most basic use of the module.</p>
+<p><code>include ::ssh::server</code> is enough to get you up and running with
+default parameters. You can pass the parameters which if permit root login,
+allow password authentication and public key authentication, like this:</p>
+
+<pre class="code ruby"><code class="ruby">class { &#39;::ssh::server&#39;: 
+  permitrootlogin =&gt; &#39;yes&#39;,
+  pubkeyauth      =&gt; &#39;yes&#39;,
+  passwordauth    =&gt; &#39;yes&#39;,
+}</code></pre>
+
+<p>Do you want change listened port, allow ipv6 and ? “`puppet class {
+&#39;::ssh::server&#39;:  port =&gt; 5000,  addressfamily =&gt;
+&#39;inet6&#39;,</p>
+
+<p>} “`</p>
 
 <h2 id="label-Usage">Usage</h2>
 
@@ -777,7 +771,7 @@ on logout.</p>
 
 <p>Data type: String.</p>
 
-<p>Specifies the local addresses sshd(8) should listen on.</p>
+<p>Specifies the local addresses sshd should listen on.</p>
 
 <p>Default value: undef.</p>
 
@@ -1159,104 +1153,123 @@ user&#39;s files and home directory before accepting login.</p>
 
 <p>Default value: &#39;AUTHPRIV&#39;.</p>
 
-<h4 id="label-tcpkeepalive">tcpkeepalive</h4>
+<h4 id="label-tcpkeepalive"><code>tcpkeepalive</code></h4>
 
-<p>Optional</p>
+<p>Optional.</p>
 
-<p>Data type: Enum[&#39;yes&#39;, &#39;no&#39;]</p>
+<p>Data type: Enum[&#39;yes&#39;, &#39;no&#39;].</p>
 
 <p>Specifies whether the system should send TCP keepalive messages to the
 other side. If they are sent, death of the connection or crash of one of
-the machines will be properly noticed. Default value: &#39;yes&#39;.</p>
+the machines will be properly noticed.</p>
 
-<h4 id="label-trustedusercakeys">trustedusercakeys</h4>
+<p>Default value: &#39;yes&#39;.</p>
 
-<p>Optional</p>
+<h4 id="label-trustedusercakeys"><code>trustedusercakeys</code></h4>
+
+<p>Optional.</p>
 
 <p>Data type: String.</p>
 
 <p>Specifies a file containing public keys of certificate authorities that are
 trusted to sign user certificates for authentication, or none to not use
-one. Default value: undef.</p>
+one.</p>
 
-<h4 id="label-usedns">usedns</h4>
+<p>Default value: undef.</p>
 
-<p>Optional</p>
+<h4 id="label-usedns"><code>usedns</code></h4>
 
-<p>Data type: Enum[&#39;yes&#39;, &#39;no&#39;]</p>
+<p>Optional.</p>
+
+<p>Data type: Enum[&#39;yes&#39;, &#39;no&#39;].</p>
 
 <p>Specifies whether sshd should look up the remote host name, and to check
 that the resolved host name for the remote IP address maps back to the very
-same IP address. Default value: &#39;no&#39;.</p>
+same IP address.</p>
 
-<h4 id="label-uselogin">uselogin</h4>
+<p>Default value: &#39;no&#39;.</p>
 
-<p>Optional</p>
+<h4 id="label-uselogin"><code>uselogin</code></h4>
 
-<p>Data type: Enum[&#39;yes&#39;, &#39;no&#39;]</p>
+<p>Optional.</p>
 
-<p>Specifies wheter sshd use login. Default value: undef.</p>
+<p>Data type: Enum[&#39;yes&#39;, &#39;no&#39;].</p>
 
-<h4 id="label-usepam">usepam</h4>
+<p>Specifies wheter sshd use login.</p>
 
-<p>Optional</p>
+<p>Default value: undef.</p>
 
-<p>Data type: Enum[&#39;yes&#39;, &#39;no&#39;]</p>
+<h4 id="label-usepam"><code>usepam</code></h4>
 
-<p>Specifies wheter sshd use PAM. Default value: &#39;yes&#39;.</p>
+<p>Optional.</p>
 
-<h4 id="label-useprivilegeseparation">useprivilegeseparation</h4>
+<p>Data type: Enum[&#39;yes&#39;, &#39;no&#39;].</p>
 
-<p>Optional</p>
+<p>Specifies wheter sshd use PAM.</p>
+
+<p>Default value: &#39;yes&#39;.</p>
+
+<h4 id="label-useprivilegeseparation"><code>useprivilegeseparation</code></h4>
+
+<p>Optional.</p>
 
 <p>Data type: String.</p>
 
-<p>Specifies wheter sshd use privilege separation. Default value:
-&#39;yes&#39;.</p>
+<p>Specifies wheter sshd use privilege separation.</p>
 
-<h4 id="label-versionaddendum">versionaddendum</h4>
+<p>Default value: &#39;yes&#39;.</p>
 
-<p>Optional</p>
+<h4 id="label-versionaddendum"><code>versionaddendum</code></h4>
+
+<p>Optional.</p>
 
 <p>Data type: String.</p>
 
 <p>Optionally specifies additional text to append to the SSH protocol banner
-sent by the server upon connection. Default value: undef.</p>
+sent by the server upon connection.</p>
 
-<h4 id="label-x11displayoffset">x11displayoffset</h4>
+<p>Default value: undef.</p>
 
-<p>Optional</p>
+<h4 id="label-x11displayoffset"><code>x11displayoffset</code></h4>
 
-<p>Data type: Integer</p>
+<p>Optional.</p>
 
-<p>Specifies the first display number available for sshd&#39;s X11 forwarding.
-Default value: 10.</p>
+<p>Data type: Integer.</p>
 
-<h4 id="label-x11forwarding">x11forwarding</h4>
+<p>Specifies the first display number available for sshd&#39;s X11 forwarding.</p>
 
-<p>Optional</p>
+<p>Default value: 10.</p>
 
-<p>Data type: Enum[&#39;yes&#39;, &#39;no&#39;]</p>
+<h4 id="label-x11forwarding"><code>x11forwarding</code></h4>
 
-<p>Specifies whether X11 forwarding is permitted. Default value:
-&#39;yes&#39;.</p>
+<p>Optional.</p>
 
-<h4 id="label-x11uselocalhost">x11uselocalhost</h4>
+<p>Data type: Enum[&#39;yes&#39;, &#39;no&#39;].</p>
 
-<p>Optional</p>
+<p>Specifies whether X11 forwarding is permitted.</p>
 
-<p>Data type: Enum[&#39;yes&#39;, &#39;no&#39;]</p>
+<p>Default value: &#39;yes&#39;.</p>
+
+<h4 id="label-x11uselocalhost"><code>x11uselocalhost</code></h4>
+
+<p>Optional.</p>
+
+<p>Data type: Enum[&#39;yes&#39;, &#39;no&#39;].</p>
 
 <p>Specifies whether sshd should bind the X11 forwarding server to the
-loopback address or to the wildcard address. Default value: undef.</p>
+loopback address or to the wildcard address.</p>
 
-<h4 id="label-xauthlocation">xauthlocation</h4>
+<p>Default value: undef.</p>
 
-<p>Optional</p>
+<h4 id="label-xauthlocation"><code>xauthlocation</code></h4>
+
+<p>Optional.</p>
 
 <p>Data type: Stdlib::Absolutepath.</p>
 
-<p>Specifies the full pathname of the xauth. Default value: undef.</p>
+<p>Specifies the full pathname of the xauth.</p>
+
+<p>Default value: undef.</p>
 
 <h2 id="label-Limitations">Limitations</h2>
 
@@ -1266,15 +1279,9 @@ heading here.</p>
 
 <h2 id="label-Development">Development</h2>
 
-<p>Since your module is awesome, other users will want to play with it. Let
-them know what the ground rules for contributing are.</p>
-
-<h2 id="label-Release+Notes-2FContributors-2FEtc.+Optional">Release Notes/Contributors/Etc. <strong>Optional</strong></h2>
-
-<p>If you aren&#39;t using changelog, put your release notes here (though you
-should consider using changelog). You can also add any additional sections
-you feel are necessary or important to include here. Please use the
-<code>##</code> header.</p>
+<p>Puppet modules on the Puppet Forge are open projects, and community
+contributions are essential for keeping them great. Please follow our
+guidelines when contributing changes.</p>
 </div></div>
 
       <div id="footer">
