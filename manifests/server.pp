@@ -208,7 +208,7 @@
 #
 # @param krbsticketcleanup [Optional[Enum['yes', 'no']]]
 #   Specifies whether to automatically destroy the user's ticket cache file 
-#   on logout. The default is yes.. Default value: undef.
+#   on logout. Default value: undef.
 #
 # @param krbsusekuserok [Optional[Enum['yes', 'no']]]
 #   Specifies if kerberos kuserok should be used. Default value: undef.
@@ -251,7 +251,7 @@
 # @param passwordauth [Optional[Enum['yes', 'no']]]
 #   Specifies whether password authentication is allowed. Default value: 'yes'.
 #
-# @param permitemptypasswords Optional[Enum['yes', 'no']]
+# @param permitemptypasswords [Optional[Enum['yes', 'no']]]
 #   When password authentication is allowed, it specifies whether 
 #   the server allows login to accounts with empty password strings. Default value: 'no'.
 #
@@ -279,14 +279,14 @@
 #   none to not write one. Default value: undef.
 #
 # @param port [Optional[Integer[1,65535]]]
-#   Specifies the port number that sshd(8) listens on. Default value: undef.
+#   Specifies the port number that sshd listens on. Default value: undef.
 #
 # @param printlastlog [Optional[Enum['yes', 'no']]]
 #   Specifies whether sshd(8) should print the date and time of the last 
 #   user login when a user logs in interactively. Default value: 'yes'.
 #
 # @param printmotd [Optional[Enum['yes', 'no']]]
-#   Specifies whether sshd(8) should print /etc/motd when a user logs in interactively. Default value: 'no'.
+#   Specifies whether sshd should print /etc/motd when a user logs in interactively. Default value: 'no'.
 #
 # @param protocol [Optional[Integer]]]
 #   Specifies protocol version. Default value: undef.
@@ -338,15 +338,15 @@
 #   local or remote port forwarding before creating a new one. Default value: undef.
 #
 # @param strictmodes [Optional[Enum['yes', 'no']]]
-#   Specifies whether sshd(8) should check file modes and ownership 
+#   Specifies whether sshd should check file modes and ownership 
 #   of the user's files and home directory before accepting login. Default value: 'yes'.
 #
 # @param subsystem [Optional[String]]
 #   Configures an external subsystem (e.g. file transfer daemon). 
-#   Default value: 'sftp /usr/libexec/openssh/sftp-server'.
+#   Default value: undef.
 #
 # @param syslogfacility [Optional[Pattern[/.*[A-Z]/]]]
-#   Gives the facility code that is used when logging messages from sshd(8). Default value: 'AUTHPRIV'.
+#   Gives the facility code that is used when logging messages from sshd. Default value: 'AUTHPRIV'.
 #
 # @param tcpkeepalive [Optional[Enum['yes', 'no']]]
 #   Specifies whether the system should send TCP keepalive messages to 

@@ -43,8 +43,8 @@
 
         <div id="search">
   
-    <a class="full_list_link" id="file_list_link"
-        href="file_list.html">
+    <a class="full_list_link" id="puppet_class_list_link"
+        href="puppet_class_list.html">
 
         <svg width="24" height="24">
           <rect x="0" y="4" width="24" height="4" rx="1" ry="1"></rect>
@@ -146,27 +146,1117 @@ include usage examples and code samples for doing things with your module.</p>
 
 <h2 id="label-Reference">Reference</h2>
 
-<p>Users need a complete list of your module&#39;s classes, types, defined
-types providers, facts, and functions, along with the parameters for each.
-You can provide this list either via Puppet Strings code comments or as a
-complete list in the README Reference section.</p>
+<h3 id="label-Classes">Classes</h3>
+
+<h4 id="label-Public+Classes">Public Classes</h4>
 <ul><li>
-<p>If you are using Puppet Strings code comments, this Reference section
-should include Strings information so that your users know how to access
-your documentation.</p>
-</li><li>
-<p>If you are not using Puppet Strings, include a list of all of your classes,
-defined types, and so on, along with their parameters. Each element in this
-listing should include:</p>
-</li><li>
-<p>The data type, if applicable.</p>
-</li><li>
-<p>A description of what the element does.</p>
-</li><li>
-<p>Valid values, if the data type doesn&#39;t make it obvious.</p>
-</li><li>
-<p>Default value, if any.</p>
+<p>ssh::server: Main class, includes all other classes.</p>
 </li></ul>
+
+<h4 id="label-Private+Classes">Private Classes</h4>
+<ul><li>
+<p>ssh::server::install: Handles the packages.</p>
+</li><li>
+<p>ssh::server::config: Handles the configuration file.</p>
+</li><li>
+<p>ssh::server::service: Handles the service.</p>
+</li></ul>
+
+<h3 id="label-Parameters">Parameters</h3>
+
+<p>The following parameters are available in the <code>ssh::server</code>
+class:</p>
+
+<h4 id="label-acceptenvs"><code>acceptenvs</code></h4>
+
+<p>Optional.</p>
+
+<p>Data type: Array.</p>
+
+<p>Specifies what environment variables sent by the client will be copied into
+the session&#39;s.</p>
+
+<p>Default value:</p>
+<ul><li>
+<p>&#39;LANG LC_CTYPE LC_NUMERIC LC_TIME LC_COLLATE LC_MONETARY
+LC_MESSAGES&#39;</p>
+</li><li>
+<p>&#39;LC_PAPER LC_NAME LC_ADDRESS LC_TELEPHONE LC_MEASUREMENT&#39;</p>
+</li><li>
+<p>&#39;LC_IDENTIFICATION LC_ALL LANGUAGE&#39;</p>
+</li><li>
+<p>&#39;XMODIFIERS&#39;</p>
+</li></ul>
+
+<h4 id="label-addressfamily"><code>addressfamily</code></h4>
+
+<p>Optional.</p>
+
+<p>Data type: Enum[&#39;inet&#39;, &#39;inet6&#39;, &#39;any&#39;].</p>
+
+<p>Specifies which address family should be used by sshd.</p>
+
+<p>Default value: undef.</p>
+
+<h4 id="label-allowagentforwarding"><code>allowagentforwarding</code></h4>
+
+<p>Optional.</p>
+
+<p>Data type: Enum[&#39;yes&#39;, &#39;no&#39;].</p>
+
+<p>Specifies whether ssh-agent forwarding is permitted.</p>
+
+<p>Default value: undef.</p>
+
+<h4 id="label-allowgroups"><code>allowgroups</code></h4>
+
+<p>Optional.</p>
+
+<p>Data type: String.</p>
+
+<p>This keyword can be followed by a list of group name patterns, separated by
+spaces. Default value: undef.</p>
+
+<h4 id="label-allowstreamlocalforwarding"><code>allowstreamlocalforwarding</code></h4>
+
+<p>Optional.</p>
+
+<p>Data type: Enum[&#39;yes&#39;, &#39;no&#39;, &#39;all&#39;,
+&#39;local&#39;, &#39;remote&#39;].</p>
+
+<p>Specifies whether StreamLocal (Unix-domain socket) forwarding is permitted.</p>
+
+<p>Default value: undef.</p>
+
+<h5 id="label-allowtcpforwarding"><code>allowtcpforwarding</code></h5>
+
+<p>Optional.</p>
+
+<p>Data type: Enum[&#39;yes&#39;, &#39;no&#39;, &#39;all&#39;,
+&#39;local&#39;, &#39;remote&#39;].</p>
+
+<p>Specifies whether TCP forwarding is permitted.</p>
+
+<p>Default value: undef.</p>
+
+<h5 id="label-allowusers"><code>allowusers</code></h5>
+
+<p>Optional.</p>
+
+<p>Data type: String.</p>
+
+<p>This keyword can be followed by a list of user name patterns, separated by
+spaces.</p>
+
+<p>Default value: undef.</p>
+
+<h4 id="label-authmethods"><code>authmethods</code></h4>
+
+<p>Optional.</p>
+
+<p>Data type: String.</p>
+
+<p>Specifies the authentication methods that must be successfully completed
+for a user to be granted access.</p>
+
+<p>Default value: undef.</p>
+
+<h4 id="label-authkeyscommand"><code>authkeyscommand</code></h4>
+
+<p>Optional.</p>
+
+<p>Data type: String.</p>
+
+<p>Specifies a program to be used to look up the user&#39;s public keys.</p>
+
+<p>Default value: undef.</p>
+
+<h4 id="label-authkeyscommanduser"><code>authkeyscommanduser</code></h4>
+
+<p>Optional.</p>
+
+<p>Data type: String.</p>
+
+<p>Specifies the user under whose account the AuthorizedKeysCommand is run.</p>
+
+<p>Default value: undef.</p>
+
+<h4 id="label-authkeysfile"><code>authkeysfile</code></h4>
+
+<p>Optional.</p>
+
+<p>Data type: String.</p>
+
+<p>Specifies the file that contains the public keys used for user
+authentication.</p>
+
+<p>Default value: &#39;.ssh/authorized_keys&#39;.</p>
+
+<h4 id="label-authprincipalscommand"><code>authprincipalscommand</code></h4>
+
+<p>Optional.</p>
+
+<p>Data type: String.</p>
+
+<p>Specifies a program to be used to generate the list of allowed certificate
+principals as per AuthorizedPrincipalsFile.</p>
+
+<p>Default value: undef.</p>
+
+<h4 id="label-authprincipalscommanduser"><code>authprincipalscommanduser</code></h4>
+
+<p>Optional.</p>
+
+<p>Data type: String.</p>
+
+<p>Specifies the user under whose account the AuthorizedPrincipalsCommand is
+run.</p>
+
+<p>Default value: undef.</p>
+
+<h4 id="label-authprincipalsfile"><code>authprincipalsfile</code></h4>
+
+<p>Optional.</p>
+
+<p>Data type: String.</p>
+
+<p>Specifies a file that lists principal names that are accepted for
+certificate authentication.</p>
+
+<p>Default value: undef.</p>
+
+<h4 id="label-banner"><code>banner</code></h4>
+
+<p>Optional.</p>
+
+<p>Data type: String.</p>
+
+<p>The contents of the specified file are sent to the remote user before
+authentication is allowed.</p>
+
+<p>Default value: undef.</p>
+
+<h4 id="label-challengeresponseauth"><code>challengeresponseauth</code></h4>
+
+<p>Optional</p>
+
+<p>Data type: Enum[&#39;yes&#39;, &#39;no&#39;].</p>
+
+<p>Specifies whether challenge-response authentication is allowed.</p>
+
+<p>Default value: &#39;no&#39;.</p>
+
+<h4 id="label-chrootdirectory"><code>chrootdirectory</code></h4>
+
+<p>Optional</p>
+
+<p>Data type: String.</p>
+
+<p>Specifies the pathname of a directory to chroot to after authentication.</p>
+
+<p>Default value: undef.</p>
+
+<h4 id="label-ciphers"><code>ciphers</code></h4>
+
+<p>Optional.</p>
+
+<p>Data type: String.</p>
+
+<p>Specifies the ciphers allowed.</p>
+
+<p>Default value: undef.</p>
+
+<h4 id="label-clientalivecountmax"><code>clientalivecountmax</code></h4>
+
+<p>Optional</p>
+
+<p>Data type: Integer.</p>
+
+<p>Sets the number of client alive messages which may be sent without sshd
+receiving any messages back from the client.</p>
+
+<p>Default value: undef.</p>
+
+<h4 id="label-clientaliveinterval"><code>clientaliveinterval</code></h4>
+
+<p>Optional</p>
+
+<p>Data type: Integer.</p>
+
+<p>Sets a timeout interval in seconds after which if no data has been received
+from the client, sshd.</p>
+
+<p>Default value: undef.</p>
+
+<h4 id="label-compression"><code>compression</code></h4>
+
+<p>Optional.</p>
+
+<p>Data type: String.</p>
+
+<p>Specifies whether compression is enabled after the user has authenticated
+successfully.</p>
+
+<p>Default value: undef.</p>
+
+<h4 id="label-conf_dir"><code>conf_dir</code></h4>
+
+<p>Data type: Stdlib::Absolutepath.</p>
+
+<p>Specifies the configuration directory of SSH Server.</p>
+
+<p>Default value: &#39;/etc/ssh&#39;.</p>
+
+<h4 id="label-conf_dir_mode"><code>conf_dir_mode</code></h4>
+
+<p>Data type: Stdlib::Filemode.</p>
+
+<p>Specifies the configuration directory permissions in octal format.</p>
+
+<p>Default value: &#39;0755&#39;.</p>
+
+<h4 id="label-conf_file"><code>conf_file</code></h4>
+
+<p>Data type: Stdlib::Absolutepath.</p>
+
+<p>Specifies the configuration file of SSH Server.</p>
+
+<p>Default value: &#39;/etc/ssh/sshd_config&#39;.</p>
+
+<h4 id="label-conf_file_mode"><code>conf_file_mode</code></h4>
+
+<p>Data type: Stdlib::Filemode.</p>
+
+<p>Specifies the configuration file permissions in octal format. Default
+value: &#39;0644&#39;.</p>
+
+<h4 id="label-conf_group"><code>conf_group</code></h4>
+
+<p>Data type: Variant[String, Integer]</p>
+
+<p>Specifies the group owner of the configuration file and directory.</p>
+
+<p>Default value: &#39;0&#39; or &#39;root&#39;.</p>
+
+<h4 id="label-conf_owner"><code>conf_owner</code></h4>
+
+<p>Data type: Variant[String, Integer].</p>
+
+<p>Specifies the owner of the configuration file and directory.</p>
+
+<p>Default value: &#39;0&#39; or &#39;root&#39;.</p>
+
+<h4 id="label-denygroups"><code>denygroups</code></h4>
+
+<p>Optional.</p>
+
+<p>Data type: String.</p>
+
+<p>This keyword can be followed by a list of group name patterns, separated by
+spaces.</p>
+
+<p>Default value: undef.</p>
+
+<h4 id="label-denyusers"><code>denyusers</code></h4>
+
+<p>Optional.</p>
+
+<p>Data type: String.</p>
+
+<p>This keyword can be followed by a list of user name patterns, separated by
+spaces.</p>
+
+<p>Default value: undef.</p>
+
+<h4 id="label-disableforwarding"><code>disableforwarding</code></h4>
+
+<p>Optional</p>
+
+<p>Data type: String.</p>
+
+<p>Disables all forwarding features, including X11, ssh-agent, TCP and
+StreamLocal.</p>
+
+<p>Default value: undef.</p>
+
+<h4 id="label-exposeauthinfo"><code>exposeauthinfo</code></h4>
+
+<p>Optional.</p>
+
+<p>Data type: Enum[&#39;yes&#39;, &#39;no&#39;]</p>
+
+<p>Writes a temporary file containing a list of authentication methods and
+public credentials (e.g. keys) used to authenticate the user.</p>
+
+<p>Default value: undef.</p>
+
+<h4 id="label-fingerprinthash"><code>fingerprinthash</code></h4>
+
+<p>Optional.</p>
+
+<p>Data type: Enum[&#39;md5&#39;, &#39;sha256&#39;].</p>
+
+<p>Specifies the hash algorithm used when logging key fingerprints.</p>
+
+<p>Default value: undef.</p>
+
+<h4 id="label-forcecommand"><code>forcecommand</code></h4>
+
+<p>Optional.</p>
+
+<p>Data type: String.</p>
+
+<p>Forces the execution of the command specified by ForceCommand, ignoring any
+command supplied by the client and ~/.ssh/rc if present.</p>
+
+<p>Default value: undef.</p>
+
+<h4 id="label-gatewayports"><code>gatewayports</code></h4>
+
+<p>Optional.</p>
+
+<p>Data type: Enum[&#39;yes&#39;, &#39;no&#39;, &#39;clientspecified&#39;]</p>
+
+<p>Specifies whether remote hosts are allowed to connect to ports forwarded
+for the client.</p>
+
+<p>Default value: undef.</p>
+
+<h4 id="label-gssapiauth"><code>gssapiauth</code></h4>
+
+<p>Optional.</p>
+
+<p>Data type: Enum[&#39;yes&#39;, &#39;no&#39;].</p>
+
+<p>Specifies whether user authentication based on GSSAPI is allowed.</p>
+
+<p>Default value: &#39;yes&#39;.</p>
+
+<h4 id="label-gssapicleanupcredentials"><code>gssapicleanupcredentials</code></h4>
+
+<p>Optional.</p>
+
+<p>Data type: Enum[&#39;yes&#39;, &#39;no&#39;].</p>
+
+<p>Specifies whether to automatically destroy the user&#39;s credentials cache
+on logout.</p>
+
+<p>Default value: &#39;no&#39;.</p>
+
+<h4 id="label-gssapienablek5users"><code>gssapienablek5users</code></h4>
+
+<p>Optional</p>
+
+<p>Data type: Enum[&#39;yes&#39;, &#39;no&#39;]</p>
+
+<p>Specifies if k5users should be enable.</p>
+
+<p>Default value: undef.</p>
+
+<h4 id="label-gssapikeyexchange"><code>gssapikeyexchange</code></h4>
+
+<p>Optional</p>
+
+<p>Data type: Enum[&#39;yes&#39;, &#39;no&#39;]</p>
+
+<p>Specifies if will have GSSAPI key exchange. Default value: undef.</p>
+
+<h4 id="label-gssapistrictacceptorcheck"><code>gssapistrictacceptorcheck</code></h4>
+
+<p>Optional.</p>
+
+<p>Data type: Enum[&#39;yes&#39;, &#39;no&#39;].</p>
+
+<p>Determines whether to be strict about the identity of the GSSAPI acceptor a
+client authenticates against.</p>
+
+<p>Default value: undef.</p>
+
+<h4 id="label-hostbasedacceptedkeytypes"><code>hostbasedacceptedkeytypes</code></h4>
+
+<p>Optional.</p>
+
+<p>Data type: String.</p>
+
+<p>Specifies the key types that will be accepted for hostbased authentication
+as a comma-separated pattern list.</p>
+
+<p>Default value: undef.</p>
+
+<h4 id="label-hostbasedauth"><code>hostbasedauth</code></h4>
+
+<p>Optional.</p>
+
+<p>Data type: Enum[&#39;yes&#39;, &#39;no&#39;].</p>
+
+<p>Specifies whether rhosts or /etc/hosts.equiv authentication together with
+successful public key client host authentication is allowed (host-based
+authentication).</p>
+
+<p>Default value: &#39;no&#39;.</p>
+
+<h4 id="label-hostbasedusesnamefrompacketonly"><code>hostbasedusesnamefrompacketonly</code></h4>
+
+<p>Optional.</p>
+
+<p>Data type: Enum[&#39;yes&#39;, &#39;no&#39;].</p>
+
+<p>Specifies whether or not the server will attempt to perform a reverse name
+lookup when matching the name in the ~/.shosts, ~/.rhosts, and
+/etc/hosts.equiv files during HostbasedAuthentication.</p>
+
+<p>Default value: undef.</p>
+
+<h4 id="label-hostcertificate"><code>hostcertificate</code></h4>
+
+<p>Optional.</p>
+
+<p>Data type: String.</p>
+
+<p>Specifies a file containing a public host certificate.</p>
+
+<p>Default value: undef.</p>
+
+<h4 id="label-hostkeys"><code>hostkeys</code></h4>
+
+<p>Optional.</p>
+
+<p>Data type: <a href="Stdlib::Absolutepath">Array</a>.</p>
+
+<p>Specifies a file containing a private host key used by SSH.</p>
+
+<p>Default value:</p>
+<ul><li>
+<p>&#39;/etc/ssh/ssh_host_rsa_key&#39;</p>
+</li><li>
+<p>&#39;/etc/ssh/ssh_host_ecdsa_key&#39;</p>
+</li><li>
+<p>&#39;/etc/ssh/ssh_host_ed25519_key&#39;</p>
+</li><li>
+<p>&#39;/etc/ssh/ssh_host_dsa_key&#39;</p>
+</li></ul>
+
+<h4 id="label-hostkeyagent"><code>hostkeyagent</code></h4>
+
+<p>Optional.</p>
+
+<p>Data type: String.</p>
+
+<p>Identifies the UNIX-domain socket used to communicate with an agent that
+has access to the private host keys. Default value: undef.</p>
+
+<h4 id="label-hostkeyalgorithms"><code>hostkeyalgorithms</code></h4>
+
+<p>Optional.</p>
+
+<p>Data type: String.</p>
+
+<p>Specifies the host key algorithms that the server offers.</p>
+
+<p>Default value: undef.</p>
+
+<h4 id="label-ignorerhosts"><code>ignorerhosts</code></h4>
+
+<p>Optional.</p>
+
+<p>Data type: Enum[&#39;yes&#39;, &#39;no&#39;].</p>
+
+<p>Specifies that .rhosts and .shosts files will not be used in
+HostbasedAuthentication.</p>
+
+<p>Default value: undef.</p>
+
+<h4 id="label-ignoreuserknownhosts"><code>ignoreuserknownhosts</code></h4>
+
+<p>Optional.</p>
+
+<p>Data type: Enum[&#39;yes&#39;, &#39;no&#39;].</p>
+
+<p>Specifies whether sshd should ignore the user&#39;s ~/.ssh/known_hosts
+during HostbasedAuthentication.</p>
+
+<p>Default value: undef.</p>
+
+<h4 id="label-ipqos"><code>ipqos</code></h4>
+
+<p>Optional.</p>
+
+<p>Data type: String.</p>
+
+<p>Specifies the IPv4 type-of-service or DSCP class for the connection.</p>
+
+<p>Default value: undef.</p>
+
+<h4 id="label-kbdinteractiveauth"><code>kbdinteractiveauth</code></h4>
+
+<p>Optional.</p>
+
+<p>Data type: Enum[&#39;yes&#39;, &#39;no&#39;].</p>
+
+<p>Specifies whether to allow keyboard-interactive authentication.</p>
+
+<p>Default value: undef.</p>
+
+<h4 id="label-krbsauth"><code>krbsauth</code></h4>
+
+<p>Optional.</p>
+
+<p>Data type: Enum[&#39;yes&#39;, &#39;no&#39;].</p>
+
+<p>Specifies whether the password provided by the user for
+PasswordAuthentication will be validated through the Kerberos KDC.</p>
+
+<p>Default value: undef.</p>
+
+<h4 id="label-krbsgetafstoken"><code>krbsgetafstoken</code></h4>
+
+<p>Optional.</p>
+
+<p>Data type: Enum[&#39;yes&#39;, &#39;no&#39;].</p>
+
+<p>If AFS is active and the user has a Kerberos 5 TGT, attempt to acquire an
+AFS token before accessing the user&#39;s home directory.</p>
+
+<p>Default value: undef.</p>
+
+<h4 id="label-krbsorlocalpasswd"><code>krbsorlocalpasswd</code></h4>
+
+<p>Optional.</p>
+
+<p>Data type: Enum[&#39;yes&#39;, &#39;no&#39;].</p>
+
+<p>If password authentication through Kerberos fails then the password will be
+validated via any additional local mechanism such as /etc/passwd.</p>
+
+<p>Default value: undef.</p>
+
+<h4 id="label-krbsticketcleanup"><code>krbsticketcleanup</code></h4>
+
+<p>Optional.</p>
+
+<p>Data type: Enum[&#39;yes&#39;, &#39;no&#39;].</p>
+
+<p>Specifies whether to automatically destroy the user&#39;s ticket cache file
+on logout.</p>
+
+<p>Default value: undef.</p>
+
+<h4 id="label-krbsusekuserok"><code>krbsusekuserok</code></h4>
+
+<p>Optional.</p>
+
+<p>Data type: Enum[&#39;yes&#39;, &#39;no&#39;].</p>
+
+<p>Specifies if kerberos kuserok should be used.</p>
+
+<p>Default value: undef.</p>
+
+<h4 id="label-kexalgorithms"><code>kexalgorithms</code></h4>
+
+<p>Optional.</p>
+
+<p>Data type: String.</p>
+
+<p>Specifies the available KEX (Key Exchange) algorithms.</p>
+
+<p>Default value: undef.</p>
+
+<h4 id="label-keyregenerationinterval"><code>keyregenerationinterval</code></h4>
+
+<p>Optional.</p>
+
+<p>Data type: Integer.</p>
+
+<p>Specifies interval of regeneration key.</p>
+
+<p>Default value: 3600.</p>
+
+<h4 id="label-listenaddress"><code>listenaddress</code></h4>
+
+<p>Optional.</p>
+
+<p>Data type: String.</p>
+
+<p>Specifies the local addresses sshd(8) should listen on.</p>
+
+<p>Default value: undef.</p>
+
+<h4 id="label-logingracetime"><code>logingracetime</code></h4>
+
+<p>Optional.</p>
+
+<p>Data type: Integer.</p>
+
+<p>The server disconnects after this time if the user has not successfully
+logged in.</p>
+
+<p>Default value: 120.</p>
+
+<h4 id="label-log_level"><code>log_level</code></h4>
+
+<p>Optional.</p>
+
+<p>Data type: <a href="A-Z">Pattern[/.*</a>/].</p>
+
+<p>Gives the verbosity level that is used when logging messages from sshd.</p>
+
+<p>Default value: &#39;INFO&#39;.</p>
+
+<h4 id="label-macs"><code>macs</code></h4>
+
+<p>Optional.</p>
+
+<p>Data type: String.</p>
+
+<p>Specifies the available MAC (message authentication code) algorithms.</p>
+
+<p>Default value: undef.</p>
+
+<h4 id="label-maxauthtries"><code>maxauthtries</code></h4>
+
+<p>Optional.</p>
+
+<p>Data type: Integer.</p>
+
+<p>Specifies the maximum number of authentication attempts permitted per
+connection.</p>
+
+<p>Default value: undef.</p>
+
+<h4 id="label-maxsessions"><code>maxsessions</code></h4>
+
+<p>Optional.</p>
+
+<p>Data type: Integer.</p>
+
+<p>Specifies the maximum number of open shell, login or subsystem (e.g. sftp)
+sessions permitted per network connection.</p>
+
+<p>Default value: undef.</p>
+
+<h4 id="label-maxstartups"><code>maxstartups</code></h4>
+
+<p>Optional.</p>
+
+<p>Data type: String.</p>
+
+<p>Specifies the maximum number of concurrent unauthenticated connections to
+the SSH daemon.</p>
+
+<p>Default value: undef.</p>
+
+<h4 id="label-package_name"><code>package_name</code></h4>
+
+<p>Data type: String.</p>
+
+<p>Specifies the package name.</p>
+
+<p>Default value: &#39;openssh-server&#39;.</p>
+
+<h4 id="label-package_ensure"><code>package_ensure</code></h4>
+
+<p>Data type: Enum[&#39;latest&#39;, &#39;present&#39;, &#39;absent&#39;]</p>
+
+<p>Specifies if package should be installed.</p>
+
+<p>Default value: &#39;latest&#39;.</p>
+
+<h4 id="label-passwordauth"><code>passwordauth</code></h4>
+
+<p>Optional.</p>
+
+<p>Data type: Enum[&#39;yes&#39;, &#39;no&#39;].</p>
+
+<p>Specifies whether password authentication is allowed.</p>
+
+<p>Default value: &#39;yes&#39;.</p>
+
+<h4 id="label-permitemptypasswords"><code>permitemptypasswords</code></h4>
+
+<p>Optional.</p>
+
+<p>Data type: Enum[&#39;yes&#39;, &#39;no&#39;].</p>
+
+<p>When password authentication is allowed, it specifies whether the server
+allows login to accounts with empty password strings.</p>
+
+<p>Default value: &#39;no&#39;.</p>
+
+<h4 id="label-permitopen"><code>permitopen</code></h4>
+
+<p>Optional.</p>
+
+<p>Data type: String.</p>
+
+<p>Specifies the destinations to which TCP port forwarding is permitted.</p>
+
+<p>Default value: undef.</p>
+
+<h4 id="label-permitrootlogin"><code>permitrootlogin</code></h4>
+
+<p>Optional.</p>
+
+<p>Data type: Enum[&#39;yes&#39;, &#39;no&#39;, &#39;prohibit-password&#39;,
+&#39;forced-commands-only&#39;].</p>
+
+<p>Specifies whether root can log in using ssh.</p>
+
+<p>Default value: undef.</p>
+
+<h4 id="label-permit_tty"><code>permit_tty</code></h4>
+
+<p>Optional.</p>
+
+<p>Data type: Enum[&#39;yes&#39;, &#39;no&#39;].</p>
+
+<p>Specifies whether pty allocation is permitted.</p>
+
+<p>Default value: undef.</p>
+
+<h4 id="label-permit_tunnel"><code>permit_tunnel</code></h4>
+
+<p>Optional.</p>
+
+<p>Data type: Enum[&#39;yes&#39;, &#39;no&#39;].</p>
+
+<p>Specifies whether tun device forwarding is allowed.</p>
+
+<p>Default value: undef.</p>
+
+<h4 id="label-permituserenvironment"><code>permituserenvironment</code></h4>
+
+<p>Optional.</p>
+
+<p>Data type: Enum[&#39;yes&#39;, &#39;no&#39;].</p>
+
+<p>Specifies whether ~/.ssh/environment and environment= options in
+~/.ssh/authorized_keys are processed by sshd.</p>
+
+<p>Default value: undef.</p>
+
+<h4 id="label-permituser_rc"><code>permituser_rc</code></h4>
+
+<p>Optional.</p>
+
+<p>Data type: Enum[&#39;yes&#39;, &#39;no&#39;].</p>
+
+<p>Specifies whether any ~/.ssh/rc file is executed.</p>
+
+<p>Default value: undef.</p>
+
+<h4 id="label-pidfile"><code>pidfile</code></h4>
+
+<p>Optional.</p>
+
+<p>Data type: Stdlib::Absolutepath.</p>
+
+<p>Specifies the file that contains the process ID of the SSH daemon, or none
+to not write one.</p>
+
+<p>Default value: undef.</p>
+
+<h4 id="label-port"><code>port</code></h4>
+
+<p>Optional.</p>
+
+<p>Data type: Integer[1, 65535].</p>
+
+<p>Specifies the port number that sshd listens on.</p>
+
+<p>Default value: undef.</p>
+
+<h4 id="label-printlastlog"><code>printlastlog</code></h4>
+
+<p>Optional.</p>
+
+<p>Data type: Enum[&#39;yes&#39;, &#39;no&#39;].</p>
+
+<p>Specifies whether sshd(8) should print the date and time of the last user
+login when a user logs in interactively.</p>
+
+<p>Default value: &#39;yes&#39;.</p>
+
+<h4 id="label-printmotd"><code>printmotd</code></h4>
+
+<p>Optional.</p>
+
+<p>Data type: Enum[&#39;yes&#39;, &#39;no&#39;].</p>
+
+<p>Specifies whether sshd should print /etc/motd when a user logs in
+interactively.</p>
+
+<p>Default value: &#39;no&#39;.</p>
+
+<h4 id="label-protocol"><code>protocol</code></h4>
+
+<p>Optional.</p>
+
+<p>Data type: Integer.</p>
+
+<p>Specifies protocol version.</p>
+
+<p>Default value: undef.</p>
+
+<h4 id="label-pubkeyacceptedkeytypes"><code>pubkeyacceptedkeytypes</code></h4>
+
+<p>Optional.</p>
+
+<p>Data type: String.</p>
+
+<p>Specifies the key types that will be accepted for public key authentication
+as a comma-separated pattern list.</p>
+
+<p>Default value: undef.</p>
+
+<h4 id="label-pubkeyauth"><code>pubkeyauth</code></h4>
+
+<p>Optional.</p>
+
+<p>Data type: Enum[&#39;yes&#39;, &#39;no&#39;].</p>
+
+<p>Specifies whether public key authentication is allowed.</p>
+
+<p>Default value: undef.</p>
+
+<h4 id="label-rekeylimit"><code>rekeylimit</code></h4>
+
+<p>Optional.</p>
+
+<p>Data type: String.</p>
+
+<p>Specifies the maximum amount of data that may be transmitted before the
+session key is renegotiated, optionally followed a maximum amount of time
+that may pass before the session key is renegotiated.</p>
+
+<p>Default value: undef.</p>
+
+<h4 id="label-revokedkeys"><code>revokedkeys</code></h4>
+
+<p>Optional.</p>
+
+<p>Data type: String.</p>
+
+<p>Specifies revoked public keys file, or none to not use one. Keys listed in
+this file will be refused for public key authentication.</p>
+
+<p>Default value: undef.</p>
+
+<h4 id="label-rdomain"><code>rdomain</code></h4>
+
+<p>Optional.</p>
+
+<p>Data type: String.</p>
+
+<p>Specifies an explicit routing domain that is applied after authentication
+has completed.</p>
+
+<p>Default value: undef.</p>
+
+<h4 id="label-rhostsrsa_auth"><code>rhostsrsa_auth</code></h4>
+
+<p>Optional.</p>
+
+<p>Data type: Enum[&#39;yes&#39;, &#39;no&#39;].</p>
+
+<p>Specifies if RHosts RSA authentication should be enabled.</p>
+
+<p>Default value: &#39;yes&#39;.</p>
+
+<h4 id="label-serverkeybits"><code>serverkeybits</code></h4>
+
+<p>Optional.</p>
+
+<p>Data type: Integer.</p>
+
+<p>Specifies amount bits of server key.</p>
+
+<p>Default value: 1024.</p>
+
+<h4 id="label-service_enable"><code>service_enable</code></h4>
+
+<p>Boolean.</p>
+
+<p>Specifies if service should be started at boot.</p>
+
+<p>Default value: &#39;true&#39;.</p>
+
+<h4 id="label-service_ensure"><code>service_ensure</code></h4>
+
+<p>Data type: Stdlib::Ensure::Service.</p>
+
+<p>Specifies if service should be running or stopped.</p>
+
+<p>Default value: &#39;running&#39;.</p>
+
+<h4 id="label-service_name"><code>service_name</code></h4>
+
+<p>Data type: String.</p>
+
+<p>Specifies the service name.</p>
+
+<p>Default value: Debian-like &#39;ssh&#39; or RedHat-like &#39;sshd&#39;.</p>
+
+<h4 id="label-showpatchlevel"><code>showpatchlevel</code></h4>
+
+<p>Optional.</p>
+
+<p>Data type: Enum[&#39;yes&#39;, &#39;no&#39;].</p>
+
+<p>Specifies if should be show patch level.</p>
+
+<p>Default value: undef.</p>
+
+<h4 id="label-streamlocalbindmask"><code>streamlocalbindmask</code></h4>
+
+<p>Optional.</p>
+
+<p>Data type: Stdlib::Filemode.</p>
+
+<p>Sets the octal file creation mode mask (umask) used when creating a
+Unix-domain socket file for local or remote port forwarding.</p>
+
+<p>Default value: undef.</p>
+
+<h4 id="label-streamlocalbindunlink"><code>streamlocalbindunlink</code></h4>
+
+<p>Optional.</p>
+
+<p>Data type: Enum[&#39;yes&#39;, &#39;no&#39;].</p>
+
+<p>Specifies whether to remove an existing Unix-domain socket file for local
+or remote port forwarding before creating a new one.</p>
+
+<p>Default value: undef.</p>
+
+<h4 id="label-strictmodes"><code>strictmodes</code></h4>
+
+<p>Optional.</p>
+
+<p>Data type: Enum[&#39;yes&#39;, &#39;no&#39;].</p>
+
+<p>Specifies whether sshd should check file modes and ownership of the
+user&#39;s files and home directory before accepting login.</p>
+
+<p>Default value: &#39;yes&#39;.</p>
+
+<h4 id="label-subsystem"><code>subsystem</code></h4>
+
+<p>Optional.</p>
+
+<p>Data type: String.</p>
+
+<p>Configures an external subsystem (e.g. file transfer daemon).</p>
+
+<p>Default value: undef.</p>
+
+<h4 id="label-syslogfacility"><code>syslogfacility</code></h4>
+
+<p>Optional.</p>
+
+<p>Data type: <a href="A-Z">Pattern[/.*</a>/].</p>
+
+<p>Gives the facility code that is used when logging messages from sshd.</p>
+
+<p>Default value: &#39;AUTHPRIV&#39;.</p>
+
+<h4 id="label-tcpkeepalive">tcpkeepalive</h4>
+
+<p>Optional</p>
+
+<p>Data type: Enum[&#39;yes&#39;, &#39;no&#39;]</p>
+
+<p>Specifies whether the system should send TCP keepalive messages to the
+other side. If they are sent, death of the connection or crash of one of
+the machines will be properly noticed. Default value: &#39;yes&#39;.</p>
+
+<h4 id="label-trustedusercakeys">trustedusercakeys</h4>
+
+<p>Optional</p>
+
+<p>Data type: String.</p>
+
+<p>Specifies a file containing public keys of certificate authorities that are
+trusted to sign user certificates for authentication, or none to not use
+one. Default value: undef.</p>
+
+<h4 id="label-usedns">usedns</h4>
+
+<p>Optional</p>
+
+<p>Data type: Enum[&#39;yes&#39;, &#39;no&#39;]</p>
+
+<p>Specifies whether sshd should look up the remote host name, and to check
+that the resolved host name for the remote IP address maps back to the very
+same IP address. Default value: &#39;no&#39;.</p>
+
+<h4 id="label-uselogin">uselogin</h4>
+
+<p>Optional</p>
+
+<p>Data type: Enum[&#39;yes&#39;, &#39;no&#39;]</p>
+
+<p>Specifies wheter sshd use login. Default value: undef.</p>
+
+<h4 id="label-usepam">usepam</h4>
+
+<p>Optional</p>
+
+<p>Data type: Enum[&#39;yes&#39;, &#39;no&#39;]</p>
+
+<p>Specifies wheter sshd use PAM. Default value: &#39;yes&#39;.</p>
+
+<h4 id="label-useprivilegeseparation">useprivilegeseparation</h4>
+
+<p>Optional</p>
+
+<p>Data type: String.</p>
+
+<p>Specifies wheter sshd use privilege separation. Default value:
+&#39;yes&#39;.</p>
+
+<h4 id="label-versionaddendum">versionaddendum</h4>
+
+<p>Optional</p>
+
+<p>Data type: String.</p>
+
+<p>Optionally specifies additional text to append to the SSH protocol banner
+sent by the server upon connection. Default value: undef.</p>
+
+<h4 id="label-x11displayoffset">x11displayoffset</h4>
+
+<p>Optional</p>
+
+<p>Data type: Integer</p>
+
+<p>Specifies the first display number available for sshd&#39;s X11 forwarding.
+Default value: 10.</p>
+
+<h4 id="label-x11forwarding">x11forwarding</h4>
+
+<p>Optional</p>
+
+<p>Data type: Enum[&#39;yes&#39;, &#39;no&#39;]</p>
+
+<p>Specifies whether X11 forwarding is permitted. Default value:
+&#39;yes&#39;.</p>
+
+<h4 id="label-x11uselocalhost">x11uselocalhost</h4>
+
+<p>Optional</p>
+
+<p>Data type: Enum[&#39;yes&#39;, &#39;no&#39;]</p>
+
+<p>Specifies whether sshd should bind the X11 forwarding server to the
+loopback address or to the wildcard address. Default value: undef.</p>
+
+<h4 id="label-xauthlocation">xauthlocation</h4>
+
+<p>Optional</p>
+
+<p>Data type: Stdlib::Absolutepath.</p>
+
+<p>Specifies the full pathname of the xauth. Default value: undef.</p>
 
 <h2 id="label-Limitations">Limitations</h2>
 

@@ -1041,7 +1041,7 @@ value: undef.</p>
         &mdash;
         <div class='inline'>
 <p>Specifies whether to automatically destroy the user&#39;s ticket cache file
-on logout. The default is yes.. Default value: undef.</p>
+on logout. Default value: undef.</p>
 </div>
       
     </li>
@@ -1274,9 +1274,9 @@ the SSH daemon. Default value: undef.</p>
       
         &mdash;
         <div class='inline'>
-<p>Optional[Enum[&#39;yes&#39;, &#39;no&#39;]] When password authentication is
-allowed, it specifies whether the server allows login to accounts with
-empty password strings. Default value: &#39;no&#39;.</p>
+<p>When password authentication is allowed, it specifies whether the server
+allows login to accounts with empty password strings. Default value:
+&#39;no&#39;.</p>
 </div>
       
     </li>
@@ -1407,7 +1407,7 @@ to not write one. Default value: undef.</p>
       
         &mdash;
         <div class='inline'>
-<p>Specifies the port number that sshd(8) listens on. Default value: undef.</p>
+<p>Specifies the port number that sshd listens on. Default value: undef.</p>
 </div>
       
     </li>
@@ -1440,7 +1440,7 @@ login when a user logs in interactively. Default value: &#39;yes&#39;.</p>
       
         &mdash;
         <div class='inline'>
-<p>Specifies whether sshd(8) should print /etc/motd when a user logs in
+<p>Specifies whether sshd should print /etc/motd when a user logs in
 interactively. Default value: &#39;no&#39;.</p>
 </div>
       
@@ -1695,7 +1695,7 @@ or remote port forwarding before creating a new one. Default value: undef.</p>
       
         &mdash;
         <div class='inline'>
-<p>Specifies whether sshd(8) should check file modes and ownership of the
+<p>Specifies whether sshd should check file modes and ownership of the
 user&#39;s files and home directory before accepting login. Default value:
 &#39;yes&#39;.</p>
 </div>
@@ -1714,7 +1714,7 @@ user&#39;s files and home directory before accepting login. Default value:
         &mdash;
         <div class='inline'>
 <p>Configures an external subsystem (e.g. file transfer daemon). Default
-value: &#39;sftp /usr/libexec/openssh/sftp-server&#39;.</p>
+value: undef.</p>
 </div>
       
     </li>
@@ -1730,7 +1730,7 @@ value: &#39;sftp /usr/libexec/openssh/sftp-server&#39;.</p>
       
         &mdash;
         <div class='inline'>
-<p>Gives the facility code that is used when logging messages from sshd(8).
+<p>Gives the facility code that is used when logging messages from sshd.
 Default value: &#39;AUTHPRIV&#39;.</p>
 </div>
       

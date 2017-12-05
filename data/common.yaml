@@ -100,7 +100,7 @@ ssh::server::showpatchlevel: ~
 ssh::server::streamlocalbindmask: ~
 ssh::server::streamlocalbindunlink: ~
 ssh::server::strictmodes: 'yes'
-ssh::server::subsystem: 'sftp /usr/libexec/openssh/sftp-server'
+ssh::server::subsystem: ~
 ssh::server::syslogfacility: 'AUTHPRIV'
 ssh::server::tcpkeepalive: 'yes'
 ssh::server::trustedusercakeys: ~
