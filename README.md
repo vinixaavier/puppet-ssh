@@ -1154,3 +1154,7 @@ This module has been tested on:
 Puppet modules on the Puppet Forge are open projects, and community contributions are essential for keeping them great. Please follow our guidelines when contributing changes.
 
 For more information, see our [module contribution guide.](https://github.com/otherskins/puppet-ansible/blob/master/CONTRIBUTING.md)
+
+## TODO
+
+* Include ssh client management.
